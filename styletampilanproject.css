@@ -271,3 +271,225 @@ body:has(#theme-toggle:checked) .team-img { background: #ffffff; }
 
 body:has(#theme-toggle:checked) .icon-moon { display: none; }
 body:has(#theme-toggle:checked) .icon-sun { display: inline; }
+
+.btn-back {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.btn-back:hover { color: var(--primary); }
+
+/* --- Layout Grid (Kiri 2 Bagian, Kanan 1 Bagian) --- */
+.course-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    padding: 30px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- KIRI: Pemutar Video --- */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Trik rasio 16:9 untuk Iframe YouTube */
+    background-color: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+}
+
+/* Penjelasan Materi */
+.materi-info {
+    background: var(--bg-panel);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+}
+
+.materi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.judul-materi { font-size: 1.4rem; }
+.badge {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.deskripsi {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.deskripsi code {
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--secondary);
+}
+
+/* Tombol Aksi */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+.btn-tandai {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-tandai:hover {
+    background: var(--success);
+    color: #fff;
+}
+
+.btn-materi-selanjutnya {
+    background: linear-gradient(135deg, var(--primary), #0284c7);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: auto; /* Mendorong tombol ke ujung kanan */
+}
+
+/* --- KANAN: Sidebar Progres --- */
+.progress-box, .playlist-box {
+    background: var(--bg-panel);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.progress-box h3, .playlist-box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Styling Progress Bar Visual */
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+}
+
+.progress-persen {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out; /* Efek transisi halus saat nilai width diubah via JS */
+}
+
+/* Daftar Playlist */
+.playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.playlist-item:hover {
+    border-color: var(--border);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.playlist-item.active {
+    background: rgba(56, 189, 248, 0.1);
+    border-color: var(--primary);
+}
+
+.playlist-item.active h4 { color: var(--primary); }
+
+.item-status {
+    font-size: 1rem;
+    color: var(--text-dim);
+}
+
+.item-text h4 {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.item-text span {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+/* --- Responsif HP --- */
+@media (max-width: 900px) {
+    .course-layout {
+        grid-template-columns: 1fr; /* Berubah jadi 1 kolom turun ke bawah */
+        padding: 20px 5%;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+    .btn-materi-selanjutnya {
+        margin-left: 0;
+        width: 100%;
+    }
+}

@@ -226,7 +226,6 @@ header {
     border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-/* --- Footer --- */
 footer {
     text-align: center;
     padding: 30px;
@@ -236,7 +235,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- Responsif --- */
 @media (max-width: 768px) {
     .hero { flex-direction: column; text-align: center; padding-top: 40px; }
     .hero-image { margin-top: 40px; justify-content: center; }

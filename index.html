@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda | Edu Free. - Platform Kursus Online</title>
+    <title>Beranda | Edu Free  - Platform Kursus Online</title>
     <link rel="stylesheet" href="styleindex.css">
 </head>
 <body>
     <a href="https://wa.me/082143511969" class="floating-wa" target="_blank" title="Hubungi Kami di WhatsApp">
-    <img src="logowa.png" alt="WhatsApp Icon" width="40" height="35">
+    <img src="./logowa.png" alt="WhatsApp Icon" width="40" height="35">
     </a>
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" class="back-to-top" title="Kembali ke atas">↑</button>
     <header>
@@ -37,24 +37,56 @@
                 <a href="katalog.html" class="btn btn-register" style="padding: 15px 35px; font-size: 1.1rem;">Jelajahi Kelas</a>
             </div>
             <div class="hero-image">
-                <img src="program.jpg" alt="Dashboard Belajar">
+                <img src="../Blog Farhan/program.jpg" alt="Dashboard Belajar">
             </div>
         </section>
         <section class="categories">
             <div class="section-header">
-                <h2>Materi Pembelajaran: HTML</h2>
-                <p>Pelajari fondasi utama dalam membangun struktur halaman web dari nol.</p>
+                <h2>Materi Pembelajaran: HTML, CSS, Dan Java Script</h2>
+                <p>Klik Kategori dibawah ini Untuk Melihat Materi yang telah disiapkan, Semangat Belajarnyaa!!.</p>
             </div>
             <div class="cat-grid">
                 <div class="cat-card">
-                    <div class="cat-icon">📄</div>
-                    <h3>HTML DASAR</h3>
-                    <span>Struktur Dasar HTML & Tag-Tag dasar pada HTML</span>
+                    <a href="./html dasar materi/HTMLDASAR.html" class="team-card">
+                        <div class="cat-icon">📄</div>
+                        <h3>HTML DASAR</h3>
+                        <span>Tag-Tag dasar pada HTML</span>
+                    </a>
                 </div>
                 <div class="cat-card">
-                    <div class="cat-icon">📄</div>
-                    <h3>HTML LANJUTAN</h3>
-                    <span>Tag-Tag Lanjutan Pada HTML</span>
+                    <a href="./htmllanjutan/htmllanjutan.html" class="team-card">
+                        <div class="cat-icon">📄</div>
+                        <h3>HTML LANJUTAN</h3>
+                        <span>Tag-Tag Lanjutan Pada HTML</span>
+                    </a>
+                </div>
+                <div class="cat-card">
+                    <a href="./inlinecss/inlinecss.html" class="team-card">
+                        <div class="cat-icon">📄</div>
+                        <h3>CSS 1</h3>
+                        <span>Inline CSS</span>
+                    </a>
+                </div>
+                <div class="cat-card">
+                    <a href="./internalcss/internalcss.html" class="team-card">
+                        <div class="cat-icon">📄</div>
+                        <h3>CSS 2</h3>
+                        <span>Internal CSS</span>
+                    </a>
+                </div>
+                <div class="cat-card">
+                    <a href="./externalcss/externalcss.html" class="team-card">
+                        <div class="cat-icon">📄</div>
+                        <h3>CSS 3</h3>
+                        <span>External CSS</span>
+                    </a>
+                </div>
+                <div class="cat-card">
+                    <a href="./javascript/javascript.html" class="team-card">
+                        <div class="cat-icon">📄</div>
+                        <h3>Java Script</h3>
+                        <span>Java Script Dasar</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -78,7 +110,7 @@
         </section>
         <section class="calendar-section">
             <div class="section-header">
-                <h2>Kalender Kegiatan</h2>
+                <h2>Kalender Sesi Upload Materi</h2>
                 <p>Jangan lewatkan sesi Materi HTML Lanjutan dan CSS.</p>
             </div>
             <div class="calendar-grid">
@@ -88,18 +120,28 @@
                         <span class="month">Mei</span>
                     </div>
                     <div class="event-details">
-                        <h3>Materi HTML Lanjutan</h3>
-                        <p>Upload pada 07:00</p>
+                        <h3>Materi CSS Inline</h3>
+                        <p>Di - Upload pada Jam 18:30</p>
                     </div>
                 </div>
                 <div class="event-card">
                     <div class="event-date">
-                        <span class="date">22</span>
-                        <span class="month">Mei</span>
+                        <span class="date">17</span>
+                        <span class="month">Juni</span>
                     </div>
                     <div class="event-details">
-                        <h3>Materi CSS</h3>
-                        <p>Upload Pada 18:30</p>
+                        <h3>Materi CSS Internal</h3>
+                        <p>Di - Upload Pada Jam 18:30</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">16</span>
+                        <span class="month">Juli</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Materi CSS External</h3>
+                        <p>Di - Upload Pada Jam 18:30</p>
                     </div>
                 </div>
             </div>
@@ -116,7 +158,7 @@
                     </div>
                     <div class="form-group">
                         <select required>
-                            <option value="" disabled selected>Beri Rating (1-5 Bintang)</option>
+                            <option value="" disabled selected>Beri Rating untuk kami(1-5 Bintang)</option>
                             <option value="5">⭐⭐⭐⭐⭐ (Sangat Puas)</option>
                             <option value="4">⭐⭐⭐⭐ (Puas)</option>
                             <option value="3">⭐⭐⭐ (Cukup)</option>
@@ -133,7 +175,7 @@
         </section>
         <section class="newsletter-section">
             <div class="newsletter-box">
-                <h2>Belajar Coding Tapi Takut Ketiggalan??</h2>
+                <h2>Belajar Coding Tapi Takut Ketinggalan Info??</h2>
                 <p>Berlangganan newsletter kami untuk mendapatkan informasi langsung ke Gmail kamu.</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="Masukkan alamat email Anda" required>

@@ -56,10 +56,6 @@ header {
     -webkit-text-fill-color: transparent;
 }
 
-.nav-menu { display: flex; gap: 30px; }
-.nav-menu a { font-weight: 500; color: var(--text-muted); transition: color 0.3s ease; }
-.nav-menu a:hover, .nav-menu a.active { color: var(--primary); }
-
 .auth-buttons .btn {
     padding: 10px 24px;
     border-radius: 30px;

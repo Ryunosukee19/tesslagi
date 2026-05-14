@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.about-wrapper {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: gray;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* CONTAINER */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* CARD */
+.about-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.about-card h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.about-card p {
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   1. PENGATURAN DASAR & VARIABEL (Hanya Perlu Ditulis 1 Kali)
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --primary-blue: #2563eb;
+  --dark-blue: #0f172a;
+  --gray-text: #475569;
+  --light-bg: #f8fafc;
+  --accent-purple: #a21caf;
+  --transition-smooth: all 0.3s ease;
+}
+
+/* Reusable Container & Section Layout */
+.section-padding { padding: 80px 20px; }
+.container-wide { max-width: 1140px; margin: 0 auto; }
+.container-narrow { max-width: 800px; margin: 0 auto; }
+.center-text { text-align: center; margin-bottom: 50px; }
+
+.tag-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.section-title { font-size: 2.25rem; color: var(--dark-blue); font-weight: 800; margin-bottom: 15px; }
+.section-subtitle { font-size: 1.1rem; color: var(--gray-text); line-height: 1.6; }
+
+
+.desc-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+.desc-paragraph { font-size: 1.05rem; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+.stats-card { background-color: var(--light-bg); border: 1px solid #e2e8f0; border-radius: 24px; padding: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.stat-number { font-size: 2.25rem; font-weight: 800; color: var(--primary-blue); }
+.stat-label { font-size: 0.95rem; color: #64748b; font-weight: 500; }
+
+
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.step-card { background-color: var(--light-bg); border-radius: 16px; padding: 40px 30px; border: 1px solid #e2e8f0; position: relative; transition: var(--transition-smooth); }
+.step-card:hover { background-color: #ffffff; border-color: var(--primary-blue); box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08); transform: translateY(-5px); }
+.step-number { font-size: 2.5rem; font-weight: 800; color: var(--primary-blue); opacity: 0.3; margin-bottom: 20px; transition: var(--transition-smooth); }
+.step-card:hover .step-number { opacity: 1; }
+
+
+.goals-list { display: flex; flex-direction: column; gap: 24px; }
+.goal-item { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px 30px; display: flex; gap: 20px; align-items: flex-start; transition: var(--transition-smooth); }
+.goal-item:hover { border-color: var(--accent-purple); box-shadow: 0 4px 20px rgba(162, 28, 175, 0.05); transform: translateX(5px); }
+.goal-dot { display: block; width: 12px; height: 12px; background-color: var(--accent-purple); border-radius: 50%; box-shadow: 0 0 0 4px rgba(162, 28, 175, 0.2); }
+
+
+.award-box { background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); display: flex; align-items: center; padding: 40px; gap: 40px; border: 1px solid #e2e8f0; }
+.medal-badge { font-size: 4.5rem; background: #f1f5f9; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+
+.cta-section { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; text-align: center; }
+.cta-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 15px 35px; font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 50px; transition: var(--transition-smooth); }
+.btn-primary { background-color: #ff6b6b; color: #ffffff; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4); }
+.btn-primary:hover { background-color: #ff5252; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6); }
+.btn-secondary { background-color: transparent; color: #ffffff; border: 2px solid #ffffff; }
+.btn-secondary:hover { background-color: #ffffff; color: #2a5298; transform: translateY(-3px); }
+
+
+@media (max-width: 992px) {
+  .desc-grid { grid-template-columns: 1fr; gap: 40px; }
+  .section-title { font-size: 2rem; }
+}
+@media (max-width: 768px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .award-box { flex-direction: column; text-align: center; gap: 20px; }
+  .medal-badge { width: 100px; height: 100px; font-size: 3.5rem; }
+}
+@media (max-width: 576px) {
+  .stats-card { grid-template-columns: 1fr; text-align: center; padding: 30px; }
+  .cta-buttons { flex-direction: column; gap: 15px; }
+  .btn { width: 100%; }
+}

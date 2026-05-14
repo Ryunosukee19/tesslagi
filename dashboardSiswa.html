@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Siswa 10 Interface</title>
+
+<style>
+body { margin:0; font-family:Arial; background:#f1f5f9; }
+
+/* LOGIN */
+#loginPage{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* APP */
+#app{ display:none; }
+
+/* SIDEBAR */
+#sidebar{
+    width:230px;
+    height:100vh;
+    position:fixed;
+    background:#0f172a;
+    color:white;
+    padding:10px;
+    overflow:auto;
+}
+
+#sidebar a{
+    display:block;
+    padding:10px;
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#sidebar a:hover{ background:#1e293b; }
+
+/* CONTENT */
+#content{
+    margin-left:230px;
+    padding:20px;
+}
+
+.box{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+/* DARK */
+.dark{
+    background:#0b1220;
+    color:white;
+}
+.dark .box{
+    background:#1e293b;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+    <div class="box" style="width:300px;">
+        <h3>Login Siswa</h3>
+        <input id="username" placeholder="username" style="width:100%;padding:8px">
+        <br><br>
+        <input id="password" type="password" placeholder="password" style="width:100%;padding:8px">
+
+        <button onclick="login()" style="width:100%;padding:10px;margin-top:10px">
+            Login
+        </button>
+
+        <p style="font-size:12px;text-align:center">demo: siswa / 123</p>
+    </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+<h3>🎓 SISWA</h3>
+
+<a onclick="show('dashboard')">Dashboard</a>
+<a onclick="show('profil')">Profil</a>
+<a onclick="show('nilai')">Nilai</a>
+<a onclick="show('jadwal')">Jadwal</a>
+<a onclick="show('absensi')">Absensi</a>
+<a onclick="show('tugas')">Tugas</a>
+<a onclick="show('materi')">Materi</a>
+<a onclick="show('pengumuman')">Pengumuman</a>
+<a onclick="show('pembayaran')">Pembayaran</a>
+<a onclick="show('pengaturan')">Pengaturan</a>
+
+<hr>
+
+<a onclick="toggleDark()">🌙 Dark Mode</a>
+<a onclick="logout()">🚪 Logout</a>
+</div>
+
+<!-- CONTENT -->
+<div id="content">
+
+<div id="dashboard" class="page box">
+<h2>Dashboard</h2>
+<p id="welcome"></p>
+</div>
+
+<div id="profil" class="page box" style="display:none">
+<h2>Profil</h2>
+<p id="profilText"></p>
+</div>
+
+<div id="nilai" class="page box" style="display:none">
+<h2>Nilai</h2>
+<ul id="nilaiList"></ul>
+</div>
+
+<div id="jadwal" class="page box" style="display:none">
+<h2>Jadwal</h2>
+<p>Senin - Jumat | 07.00 - 14.00</p>
+</div>
+
+<div id="absensi" class="page box" style="display:none">
+<h2>Absensi</h2>
+<p>Hadir: 95% | Izin: 3% | Alpha: 2%</p>
+</div>
+
+<div id="tugas" class="page box" style="display:none">
+<h2>Tugas</h2>
+
+<input id="tugasInput" placeholder="tambah tugas" style="padding:8px;width:70%">
+<button onclick="addTugas()">Tambah</button>
+
+<ul id="tugasList"></ul>
+</div>
+
+<div id="materi" class="page box" style="display:none">
+<h2>Materi</h2>
+<p>📘 Matematika, IPA, Bahasa Indonesia</p>
+</div>
+
+<div id="pengumuman" class="page box" style="display:none">
+<h2>Pengumuman</h2>
+<p>📢 Ujian akan dimulai minggu depan</p>
+</div>
+
+<div id="pembayaran" class="page box" style="display:none">
+<h2>Pembayaran</h2>
+<p>Status: LUNAS</p>
+</div>
+
+<div id="pengaturan" class="page box" style="display:none">
+<h2>Pengaturan</h2>
+<p>Atur akun & keamanan</p>
+</div>
+
+</div>
+</div>
+
+<script>
+
+/* DATA */
+const user = {
+username:"siswa",
+password:"123",
+nama:"Rafli",
+kelas:"dpw if-2B",
+nilai:{
+Matematika:90,
+IPA:85,
+Bahasa:88
+},
+tugas:["Belajar Matematika"]
+};
+
+let session=null;
+
+/* LOGIN */
+function login(){
+let u=document.getElementById("username").value;
+let p=document.getElementById("password").value;
+
+if(u===user.username && p===user.password){
+session=user;
+document.getElementById("loginPage").style.display="none";
+document.getElementById("app").style.display="block";
+
+load();
+show('dashboard');
+}else{
+alert("Login gagal");
+}
+}
+
+/* LOAD DATA */
+function load(){
+document.getElementById("welcome").innerText =
+"Selamat datang "+session.nama+" ("+session.kelas+")";
+
+document.getElementById("profilText").innerText =
+session.nama+" - "+session.kelas;
+
+let html="";
+for(let m in session.nilai){
+html+=`<li>${m}: ${session.nilai[m]}</li>`;
+}
+document.getElementById("nilaiList").innerHTML=html;
+
+renderTugas();
+}
+
+/* TUGAS */
+function renderTugas(){
+let html="";
+session.tugas.forEach((t,i)=>{
+html+=`<li>${t} <button onclick="hapus(${i})">X</button></li>`;
+});
+document.getElementById("tugasList").innerHTML=html;
+}
+
+function addTugas(){
+let v=document.getElementById("tugasInput").value;
+if(v){
+session.tugas.push(v);
+renderTugas();
+}
+}
+
+function hapus(i){
+session.tugas.splice(i,1);
+renderTugas();
+}
+
+/* NAV */
+function show(id){
+document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+/* DARK */
+function toggleDark(){
+document.body.classList.toggle("dark");
+}
+
+/* LOGOUT */
+function logout(){
+location.reload();
+}
+
+</script>
+
+</body>
+</html>

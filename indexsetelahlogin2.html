@@ -20,10 +20,7 @@
             --sidebar-width: 260px;
         }
 
-        /* =========================================
-           LOGIKA TEMA TERANG (LIGHT MODE)
-           Ini yang membuat tombolnya berfungsi!
-        ========================================= */
+        /* LOGIKA TEMA TERANG (LIGHT MODE) */
         body:has(#theme-toggle:checked) {
             --bg-dark: #f8fafc;        
             --bg-sidebar: #ffffff;        
@@ -34,7 +31,6 @@
             --border-color: rgba(0, 0, 0, 0.1); 
         }
         
-        /* Ganti tulisan Gelap jadi Terang saat diklik */
         .icon-sun { display: none; }
         body:has(#theme-toggle:checked) .icon-moon { display: none; }
         body:has(#theme-toggle:checked) .icon-sun { display: inline; }
@@ -66,7 +62,12 @@
             flex-direction: column;
             z-index: 1000;
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            overflow-y: auto; /* Agar menu bisa di-scroll jika kepanjangan */
         }
+        
+        /* Desain Scrollbar Sidebar */
+        .sidebar::-webkit-scrollbar { width: 5px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
 
         .logo {
             font-size: 1.8rem;
@@ -79,15 +80,16 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* Toggle Tema */
         .theme-switch-wrapper { padding: 15px 20px; border-bottom: 1px solid var(--border-color); }
         .theme-toggle-label { cursor: pointer; color: var(--text-muted); display: flex; gap: 10px; font-size: 0.95rem; font-weight: 500;}
         .theme-toggle-label:hover { color: var(--text-main); }
-        .theme-checkbox { display: none; } /* Sembunyikan kotak centang aslinya */
+        .theme-checkbox { display: none; } 
 
-        .nav-links { padding-top: 15px; }
+        .nav-links { padding-top: 15px; padding-bottom: 30px; }
         .nav-links li a {
-            display: block;
+            display: flex;
+            justify-content: space-between; /* Agar teks & panah terpisah kiri-kanan */
+            align-items: center;
             padding: 15px 20px;
             color: var(--text-muted);
             font-weight: 500;
@@ -108,6 +110,37 @@
         }
 
         /* =========================================
+           FITUR BARU: DROPDOWN MENU
+        ========================================= */
+        .dropdown-btn { cursor: pointer; }
+        
+        /* Panah Dropdown */
+        .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+        /* Putar panah ke atas saat menu terbuka */
+        .dropdown-btn.open .arrow { transform: rotate(180deg); }
+
+        /* Container Sub-menu (Sembunyi secara default) */
+        .dropdown-container {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.1); /* Warna background beda sedikit */
+            flex-direction: column;
+        }
+
+        /* Tampilkan saat class 'show' ditambahkan via JavaScript */
+        .dropdown-container.show { display: flex; }
+
+        /* Gaya teks sub-menu */
+        .dropdown-container li a {
+            padding: 12px 20px 12px 40px; /* Jarak kiri lebih masuk ke dalam (Indent) */
+            font-size: 0.95rem;
+            border-left: none !important; /* Hilangkan garis aktif di sub-menu (opsional) */
+        }
+        .dropdown-container li a:hover { padding-left: 45px; } /* Animasi hover sub-menu */
+
+        /* =========================================
            2. FRAME KANAN (KONTEN UTAMA)
         ========================================= */
         .main-content {
@@ -117,7 +150,6 @@
             padding: 40px;
         }
 
-        /* Desain Konten (Hero) */
         .hero {
             display: flex;
             align-items: center;
@@ -154,7 +186,6 @@
         .hero-image { flex: 1; display: flex; justify-content: flex-end; }
         .hero-image img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 
-        /* Tombol WA */
         .floating-wa {
             position: fixed; bottom: 30px; right: 30px; z-index: 1000;
             background-color: #25D366; border-radius: 50px; padding: 10px;
@@ -179,7 +210,18 @@
 
         <ul class="nav-links">
             <li><a href="index.html" class="active">Beranda</a></li>
-            <li><a href="materi.html">Materi Semester 2</a></li>
+            
+            <li>
+                <a href="#" class="dropdown-btn">
+                    Materi Semester 2 
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown-container">
+                    <li><a href="#">DPW</a></li>
+                    <li><a href="#">Struktur Data</a></li>
+                </ul>
+            </li>
+
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
         </ul>
@@ -203,5 +245,29 @@
         <img src="./logowa.png" alt="WA" width="40" height="35">
     </a>
 
+    <script>
+        // Mencari semua menu yang memiliki class 'dropdown-btn'
+        var dropdowns = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].addEventListener("click", function(e) {
+                e.preventDefault(); // Mencegah link pindah halaman saat diklik
+                
+                // Menambahkan efek putar panah
+                this.classList.toggle("open");
+                
+                // Mencari tag <ul> (submenu) tepat di bawah link ini
+                var dropdownContent = this.nextElementSibling;
+                
+                // Buka/Tutup submenu
+                if (dropdownContent.classList.contains("show")) {
+                    dropdownContent.classList.remove("show");
+                } else {
+                    dropdownContent.classList.add("show");
+                }
+            });
+        }
+    </script>
 </body>
 </html>

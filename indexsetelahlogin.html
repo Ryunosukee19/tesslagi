@@ -8,37 +8,36 @@
 </head>
 <body>
     <a href="https://wa.me/082143511969" class="floating-wa" target="_blank" title="Hubungi Kami di WhatsApp">
-    <img src="./logowa.png" alt="WhatsApp Icon" width="40" height="35">
+        <img src="./logowa.png" alt="WhatsApp Icon" width="40" height="35">
     </a>
+    
     <header>
-        <header>
         <div class="logo">Edu-Free.</div>
         
-        <!-- Checkbox disembunyikan untuk trigger animasi Sidebar -->
         <input type="checkbox" id="menu-toggle" hidden>
         
-        <!-- Ikon Hamburger untuk membuka/menutup menu -->
-        <label for="menu-toggle" class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
+        <div class="header-actions">
+            <input type="checkbox" id="theme-toggle" class="theme-checkbox" hidden>
+            <label for="theme-toggle" class="theme-toggle-label">
+                <span class="icon-moon">🌙Gelap</span>
+                <span class="icon-sun">☀️Terang</span>
+            </label>
 
-        <!-- Menu yang sekarang akan menjadi Sidebar -->
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+
         <ul class="nav-menu">
             <li><a href="index.html" class="active">Beranda</a></li>
             <li><a href="materi.html">Materi Semester 1</a></li>
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
         </ul>
+    </header>
 
-        <input type="checkbox" id="theme-toggle" class="theme-checkbox" hidden>
-        <label for="theme-toggle" class="theme-toggle-label">
-            <span class="icon-moon">🌙Gelap</span>
-            <span class="icon-sun">☀️Terang</span>
-        </label>
-    </header>
-    </header>
     <main>
         <section class="hero">
             <div class="hero-content">

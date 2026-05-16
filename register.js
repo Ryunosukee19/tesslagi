@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('loggedInUser', JSON.stringify(userData));
             // =============================
 
-            alert(`Registrasi Berhasil, ${nama}! Anda akan diarahkan ke materi pembelajaran.`);
+            alert(`Registrasi Berhasil, ${nama}! Anda akan diarahkan ke Halaman Kelas.`);
 
             // Logika Redirect berdasarkan Semester
             if (semester === "1") {

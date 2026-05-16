@@ -27,7 +27,7 @@
         .btn-back:hover { background: var(--primary, #38bdf8); border-color: var(--primary, #38bdf8); color: #fff; transform: translateX(-5px); }
 
         /* =========================================
-           CSS UNTUK FLIP CARD (KARTU BOLAK-BALIK)
+           CSS UNTUK FLIP CARD (SISTEM KLIK)
         ========================================= */
         .explore-wrapper {
             padding: 40px 8%; max-width: 1200px; margin: 0 auto; min-height: 80vh;
@@ -37,34 +37,30 @@
         .explore-header h2 { font-size: 2.5rem; margin-bottom: 15px; color: var(--text-main); }
         .explore-header p { color: var(--text-muted); font-size: 1.1rem; }
 
-        /* Grid Kartu */
         .flashcard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        /* Area Kartu */
         .flip-card {
             background-color: transparent;
             height: 320px;
-            perspective: 1000px; /* Efek 3D */
+            perspective: 1000px; 
             cursor: pointer;
         }
 
-        /* Bagian dalam kartu yang akan berputar */
         .flip-card-inner {
             position: relative; width: 100%; height: 100%;
             text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
         }
 
-        /* Animasi Berputar saat di-hover */
-        .flip-card:hover .flip-card-inner {
+        /* PERUBAHAN: Dihapus .flip-card:hover, diganti class .flipped via JavaScript */
+        .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
 
-        /* Sisi Depan & Belakang Kartu */
         .flip-card-front, .flip-card-back {
             position: absolute; width: 100%; height: 100%;
             -webkit-backface-visibility: hidden; backface-visibility: hidden;
@@ -73,7 +69,6 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        /* Sisi Depan (Pertanyaan) */
         .flip-card-front {
             background: var(--bg-card, #1e293b);
             border: 1px solid var(--border-color, rgba(255,255,255,0.1));
@@ -81,13 +76,17 @@
         }
         .card-icon { font-size: 4rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
         .flip-card-front h3 { font-size: 1.3rem; line-height: 1.4; }
-        .hint-text { font-size: 0.85rem; color: var(--primary, #38bdf8); margin-top: 20px; opacity: 0.8; }
+        
+        /* Ubah instruksi di kartu */
+        .hint-text { 
+            font-size: 0.85rem; color: var(--primary, #38bdf8); 
+            margin-top: 20px; opacity: 0.8; font-weight: 500;
+        }
 
-        /* Sisi Belakang (Jawaban) */
         .flip-card-back {
             background: linear-gradient(135deg, var(--primary, #38bdf8), var(--secondary, #c084fc));
             color: #fff;
-            transform: rotateY(180deg); /* Dibalik posisinya */
+            transform: rotateY(180deg); 
             border: none;
         }
         .flip-card-back h3 { margin-bottom: 15px; font-size: 1.2rem; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px;}
@@ -139,8 +138,8 @@
                 <a onclick="switchContent('home-content', event)" class="btn-back">← Kembali ke Beranda</a>
                 
                 <div class="explore-header">
-                    <h2>Mengenal Tentang IT</h2>
-                    <p>Arahkan kursor ke kartu (atau sentuh) untuk melihat jawabannya!</p>
+                    <h2>Mengenal Dunia IT 🚀</h2>
+                    <p>Klik pada kartu untuk membalik dan melihat jawabannya!</p>
                 </div>
 
                 <div class="flashcard-grid">
@@ -150,7 +149,7 @@
                             <div class="flip-card-front">
                                 <div class="card-icon">💻</div>
                                 <h3>Apa itu Teknik Informatika?</h3>
-                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                                <div class="hint-text">Klik untuk Jawaban ⤵</div>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Teknik Informatika</h3>
@@ -164,7 +163,7 @@
                             <div class="flip-card-front">
                                 <div class="card-icon">📐</div>
                                 <h3>Haruskah pintar matematika?</h3>
-                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                                <div class="hint-text">Klik untuk Jawaban ⤵</div>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Logika > Menghitung Rumit</h3>
@@ -178,7 +177,7 @@
                             <div class="flip-card-front">
                                 <div class="card-icon">⌨️</div>
                                 <h3>Apa itu bahasa pemrograman?</h3>
-                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                                <div class="hint-text">Klik untuk Jawaban ⤵</div>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Bahasa Pemrograman</h3>
@@ -192,7 +191,7 @@
                             <div class="flip-card-front">
                                 <div class="card-icon">⚙️</div>
                                 <h3>Beda Software & Hardware?</h3>
-                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                                <div class="hint-text">Klik untuk Jawaban ⤵</div>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Fisik vs Sistem</h3>
@@ -206,7 +205,7 @@
                             <div class="flip-card-front">
                                 <div class="card-icon">🗄️</div>
                                 <h3>Apa itu Database?</h3>
-                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                                <div class="hint-text">Klik untuk Jawaban ⤵</div>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Basis Data</h3>
@@ -220,7 +219,7 @@
                             <div class="flip-card-front">
                                 <div class="card-icon">💼</div>
                                 <h3>Prospek kerja lulusannya?</h3>
-                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                                <div class="hint-text">Klik untuk Jawaban ⤵</div>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Karir Masa Depan</h3>
@@ -259,6 +258,23 @@
             // Tampilkan section yang dituju
             document.getElementById(targetId).classList.add('active');
         }
+
+        // 3. Logika Memutar Flashcard saat DIKLIK
+        const flipCards = document.querySelectorAll('.flip-card');
+        
+        flipCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Opsional: Tutup kartu lain yang sedang terbuka (Fokus 1 per 1)
+                flipCards.forEach(c => {
+                    if (c !== this) {
+                        c.classList.remove('flipped');
+                    }
+                });
+
+                // Putar kartu yang sedang diklik (Toggle)
+                this.classList.toggle('flipped');
+            });
+        });
     </script>
 </body>
 </html>

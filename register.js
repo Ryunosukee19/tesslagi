@@ -22,14 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Menyimpan dengan key berdasakan NIM agar unik
             localStorage.setItem(nim, JSON.stringify(userData));
 
+            // ====== INI TAMBAHANNYA ======
+            // Simpan juga sebagai user yang sedang aktif / login saat ini
+            localStorage.setItem('loggedInUser', JSON.stringify(userData));
+            // =============================
+
             alert(`Registrasi Berhasil, ${nama}! Anda akan diarahkan ke materi pembelajaran.`);
 
             // Logika Redirect berdasarkan Semester
             if (semester === "1") {
-                // Ganti URL ini dengan halaman dashboard/materi semester 1 kamu
+                // Mengarah ke halaman dashboard semester 1
                 window.location.href = "indexsetelahlogin.html"; 
             } else if (semester === "2") {
-                // Ganti URL ini dengan halaman dashboard/materi semester 2 kamu
+                // Mengarah ke halaman dashboard semester 2
                 window.location.href = "indexsetelahlogin2.html"; 
             }
         });
@@ -45,9 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //         const user = JSON.parse(userString);
     //         if (user.password === inputPassword) {
     //             alert("Login Sukses!");
+    //             // Set loggedInUser saat login sukses
+    //             localStorage.setItem('loggedInUser', userString);
+    //
     //             // Redirect berdasarkan semester yang tersimpan saat registrasi
-    //             if (user.semester === "1") window.location.href = "materi_semester1.html";
-    //             if (user.semester === "2") window.location.href = "materi_semester2.html";
+    //             if (user.semester === "1") window.location.href = "indexsetelahlogin.html";
+    //             if (user.semester === "2") window.location.href = "indexsetelahlogin2.html";
     //         } else {
     //             alert("Password salah!");
     //         }

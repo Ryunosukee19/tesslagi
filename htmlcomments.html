@@ -16,7 +16,7 @@
     <header>
         <div class="logo">Edu-Free.</div>
         <ul class="nav-menu">
-            <li><a href="index.html">Beranda</a></li>
+            <li><a href="indexsetelahlogin2.html">Beranda</a></li>
             <li><a href="htmlcomments.html" class="active">Materi</a></li>
         </ul>
         <div></div>
@@ -99,6 +99,25 @@
         </main>
 
     </div>
+    <script>
+        const themeToggle = document.getElementById("theme-toggle");
 
+        // 1. Cek memori saat halaman pertama kali dibuka
+        // Jika sebelumnya user memilih 'light' di halaman lain, otomatis centang tombolnya
+        if (localStorage.getItem("theme") === "light") {
+            themeToggle.checked = true;
+        }
+
+        // 2. Dengarkan saat user mengklik tombol tema di halaman ini
+        themeToggle.addEventListener("change", function() {
+            if (this.checked) {
+                // Jika dicentang (Mode Terang), simpan 'light' ke memori
+                localStorage.setItem("theme", "light");
+            } else {
+                // Jika tidak dicentang (Mode Gelap), simpan 'dark' ke memori
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    </script>
 </body>
 </html>

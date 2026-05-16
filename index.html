@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda | Edu Free  - Platform Kursus Online</title>
+    <title>Beranda | Edu Free - Platform Kursus Online</title>
     <link rel="stylesheet" href="styleindex.css">
     
     <style>
@@ -12,62 +12,95 @@
         .content-section.active { display: block; }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* =========================================
-           CSS UNTUK FAQ ACCORDION
-        ========================================= */
-        .faq-wrapper {
-            padding: 40px 8%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
-
+        /* Tombol Kembali */
         .btn-back {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: var(--primary, #38bdf8);
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .btn-back:hover { color: var(--secondary, #c084fc); }
-
-        .faq-header { text-align: center; margin-bottom: 40px; }
-        .faq-header h2 { font-size: 2.2rem; margin-bottom: 10px; color: var(--text-main); }
-        .faq-header p { color: var(--text-muted); }
-
-        .faq-container { display: flex; flex-direction: column; gap: 15px; }
-        
-        .faq-item {
-            background: var(--bg-card, rgba(255,255,255,0.05)); 
+            display: inline-block; margin-bottom: 30px;
+            padding: 10px 20px; background: rgba(255,255,255,0.05);
             border: 1px solid var(--border-color, rgba(255,255,255,0.1));
-            border-radius: 12px; overflow: hidden; transition: all 0.3s ease;
+            border-radius: 30px; color: var(--text-main, #fff);
+            font-weight: 500; cursor: pointer; transition: all 0.3s ease;
         }
-        .faq-item:hover { border-color: var(--primary, #38bdf8); }
-        
-        .faq-question {
-            width: 100%; text-align: left; padding: 20px; background: transparent; border: none;
-            color: var(--text-main, #f8fafc); font-size: 1.1rem; font-weight: 600; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center; transition: color 0.3s ease;
+        .btn-back:hover { background: var(--primary, #38bdf8); border-color: var(--primary, #38bdf8); color: #fff; transform: translateX(-5px); }
+
+        /* =========================================
+           CSS UNTUK FLIP CARD (KARTU BOLAK-BALIK)
+        ========================================= */
+        .explore-wrapper {
+            padding: 40px 8%; max-width: 1200px; margin: 0 auto; min-height: 80vh;
         }
-        .faq-question:hover { color: var(--primary, #38bdf8); }
-        .faq-icon { font-size: 1.5rem; font-weight: 400; transition: transform 0.3s ease; }
-        
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, background 0.3s; background: rgba(0, 0, 0, 0.1); }
-        .faq-answer p { padding: 0 20px 20px 20px; color: var(--text-muted, #94a3b8); line-height: 1.6; margin: 0; }
-        
-        .faq-item.active-faq .faq-answer { max-height: 300px; }
-        .faq-item.active-faq .faq-icon { transform: rotate(45deg); color: var(--primary, #38bdf8); }
+
+        .explore-header { text-align: center; margin-bottom: 50px; }
+        .explore-header h2 { font-size: 2.5rem; margin-bottom: 15px; color: var(--text-main); }
+        .explore-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Grid Kartu */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Area Kartu */
+        .flip-card {
+            background-color: transparent;
+            height: 320px;
+            perspective: 1000px; /* Efek 3D */
+            cursor: pointer;
+        }
+
+        /* Bagian dalam kartu yang akan berputar */
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        /* Animasi Berputar saat di-hover */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Sisi Depan & Belakang Kartu */
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            border-radius: 20px; padding: 30px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Sisi Depan (Pertanyaan) */
+        .flip-card-front {
+            background: var(--bg-card, #1e293b);
+            border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+            color: var(--text-main);
+        }
+        .card-icon { font-size: 4rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        .flip-card-front h3 { font-size: 1.3rem; line-height: 1.4; }
+        .hint-text { font-size: 0.85rem; color: var(--primary, #38bdf8); margin-top: 20px; opacity: 0.8; }
+
+        /* Sisi Belakang (Jawaban) */
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--primary, #38bdf8), var(--secondary, #c084fc));
+            color: #fff;
+            transform: rotateY(180deg); /* Dibalik posisinya */
+            border: none;
+        }
+        .flip-card-back h3 { margin-bottom: 15px; font-size: 1.2rem; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px;}
+        .flip-card-back p { font-size: 0.95rem; line-height: 1.6; margin: 0; text-align: left;}
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
     </style>
 </head>
 <body>
     <a href="https://wa.me/082143511969" class="floating-wa" target="_blank" title="Hubungi Kami di WhatsApp">
     <img src="./logowa.png" alt="WhatsApp Icon" width="40" height="35">
     </a>
+    
     <header>
         <div class="logo">Edu-Free.</div>
         <ul class="nav-menu">
@@ -93,7 +126,7 @@
                     <span class="badge-hero">Platform Kursus Online</span>
                     <h1>Tingkatkan Skill Coding Kamu Bersama Kelompok Kami.</h1>
                     <p>Kuis Singkat, Video Player Page <b>Live Progress Tracker</b> dan raih sertifikat kompetensi Anda.</p>
-                    <a href="#" onclick="switchContent('faq-content', event)" class="btn btn-register" style="padding: 15px 35px; font-size: 1.1rem;">Coba Jelajahi</a>
+                    <a href="#" onclick="switchContent('explore-content', event)" class="btn btn-register" style="padding: 15px 35px; font-size: 1.1rem;">Coba Jelajahi</a>
                 </div>
                 <div class="hero-image">
                     <img src="program.jpg" alt="Dashboard Belajar">
@@ -101,57 +134,101 @@
             </section>
         </div>
 
-        <div id="faq-content" class="content-section">
-            <div class="faq-wrapper">
+        <div id="explore-content" class="content-section">
+            <div class="explore-wrapper">
                 <a onclick="switchContent('home-content', event)" class="btn-back">← Kembali ke Beranda</a>
                 
-                <div class="faq-header">
-                    <h2>Mengenal Dunia IT</h2>
-                    <p>Sebelum melangkah lebih jauh, yuk pahami dasar-dasarnya terlebih dahulu.</p>
+                <div class="explore-header">
+                    <h2>Mengenal Dunia IT 🚀</h2>
+                    <p>Arahkan kursor ke kartu (atau sentuh) untuk melihat jawabannya!</p>
                 </div>
 
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question">Apa itu Teknik Informatika? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Teknik Informatika adalah disiplin ilmu yang mempelajari penerapan logika matematika dalam pengelolaan informasi menggunakan teknologi komputer. Jurusan ini berfokus pada proses pembuatan aplikasi, struktur data, algoritma, hingga perancangan arsitektur sistem.</p>
+                <div class="flashcard-grid">
+                    
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon">💻</div>
+                                <h3>Apa itu Teknik Informatika?</h3>
+                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Teknik Informatika</h3>
+                                <p>Ilmu yang mempelajari penerapan logika matematika dalam pengelolaan informasi menggunakan teknologi komputer, fokus pada pembuatan aplikasi, struktur data, dan algoritma.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Apakah harus pintar matematika jika mau masuk jurusan ini? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Tidak harus pinter sih, tapi logika matematika sangat diperlukan. Mata kuliah seperti Matematika Diskrit atau Aljabar Linear akan sering ditemui karena sangat membantu dalam melatih algoritma dan logika berurutan saat menulis baris kode pemrograman.</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon">📐</div>
+                                <h3>Haruskah pintar matematika?</h3>
+                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Logika > Menghitung Rumit</h3>
+                                <p>Tidak harus jenius matematika, tapi logika sangat diperlukan. Matematika dasar membantu melatih algoritma dan logika berurutan saat kamu menulis baris kode pemrograman.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Apa itu bahasa pemrograman? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Bahasa pemrograman adalah kumpulan instruksi atau sintaks yang digunakan untuk memberikan perintah kepada komputer agar melakukan tugas tertentu. Contohnya seperti HTML dan CSS untuk kerangka tampilan, JavaScript untuk interaktivitas web, atau Python dan C++.</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon">⌨️</div>
+                                <h3>Apa itu bahasa pemrograman?</h3>
+                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Bahasa Pemrograman</h3>
+                                <p>Kumpulan instruksi yang digunakan untuk memberi perintah kepada komputer. Contohnya HTML/CSS untuk tampilan web, JavaScript untuk interaktivitas, atau Python & C++.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Apa bedanya software dan hardware? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Hardware adalah perangkat keras fisik yang bisa disentuh (seperti CPU, RAM, Monitor, Keyboard). Sedangkan Software adalah perangkat lunak atau program yang berjalan di dalam hardware tersebut (seperti Sistem Operasi Windows, Browser Chrome, atau game).</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon">⚙️</div>
+                                <h3>Beda Software & Hardware?</h3>
+                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Fisik vs Sistem</h3>
+                                <p>Hardware adalah perangkat keras fisik yang bisa disentuh (seperti CPU, RAM, Monitor). Sedangkan Software adalah program yang berjalan di dalamnya (seperti Windows atau game).</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Apa itu database? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Database (basis data) adalah tempat berkumpulnya data-data yang tersimpan secara terstruktur di dalam server/komputer. Dengan database, informasi seperti data akun pengguna, nilai mahasiswa, atau stok barang dapat dikelola, diakses, dan diperbarui dengan cepat.</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon">🗄️</div>
+                                <h3>Apa itu Database?</h3>
+                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Basis Data</h3>
+                                <p>Tempat berkumpulnya data-data yang tersimpan terstruktur di server. Dengan database, informasi seperti akun pengguna atau nilai mahasiswa dapat dikelola dengan aman dan cepat.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Apa saja prospek kerja lulusannya? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Peluangnya sangat luas di era digital. Lulusan jurusan ini banyak yang mengincar profesi strategis seperti Data Scientist, Web Developer, Software Engineer, System Analyst, UI/UX Designer, hingga ahli Cyber Security.</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon">💼</div>
+                                <h3>Prospek kerja lulusannya?</h3>
+                                <div class="hint-text">Lihat Jawaban ⤵</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Karir Masa Depan</h3>
+                                <p>Sangat luas di era digital! Lulusan ini banyak mengincar profesi strategis seperti Web Developer, Software Engineer, Data Scientist, UI/UX Designer, hingga ahli Cyber Security.</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -171,9 +248,9 @@
             }
         });
 
-        // 2. Fungsi Pindah Konten (Beranda <-> FAQ)
+        // 2. Fungsi Pindah Konten (Beranda <-> Flashcards)
         function switchContent(targetId, event) {
-            event.preventDefault(); // Mencegah reload halaman
+            event.preventDefault(); 
             
             // Sembunyikan semua section
             const sections = document.querySelectorAll('.content-section');
@@ -182,23 +259,6 @@
             // Tampilkan section yang dituju
             document.getElementById(targetId).classList.add('active');
         }
-
-        // 3. Animasi Accordion untuk FAQ
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.parentElement;
-                
-                // Menutup FAQ lain jika ada yang sedang terbuka
-                const activeItem = document.querySelector('.faq-item.active-faq');
-                if (activeItem && activeItem !== item) {
-                    activeItem.classList.remove('active-faq');
-                }
-
-                // Membuka/menutup FAQ yang sedang diklik
-                item.classList.toggle('active-faq');
-            });
-        });
     </script>
 </body>
 </html>

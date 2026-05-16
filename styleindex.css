@@ -400,3 +400,25 @@ body:has(#theme-toggle:checked) .icon-sun { display: inline; }
     .calendar-section, .reviews-section, .newsletter-section, .categories { padding: 50px 5%; }
     .feedback-wrapper { padding: 20px; }
 }
+
+.floating-wa {
+    position: fixed; /* Membuat elemen melayang dan tetap di tempatnya saat di-scroll */
+    bottom: 20px;    /* Jarak dari bawah layar */
+    right: 20px;     /* Jarak dari kanan layar */
+    z-index: 1000;   /* Memastikan ikon selalu berada di atas elemen lain */
+    
+    /* Opsional: Tambahan styling agar terlihat lebih rapi */
+    background-color: #25D366; /* Warna hijau khas WhatsApp */
+    border-radius: 50px;       /* Membuat background agak membulat */
+    padding: 10px;             /* Ruang di sekitar gambar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Memberikan efek bayangan */
+    transition: transform 0.3s ease; /* Efek transisi saat disentuh/hover */
+}
+
+/* Opsional: Efek membesar saat kursor diarahkan ke ikon */
+.floating-wa:hover {
+    transform: scale(1.1);
+}

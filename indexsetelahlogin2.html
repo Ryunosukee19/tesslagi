@@ -246,7 +246,9 @@
     </a>
 
     <script>
-        // Mencari semua menu yang memiliki class 'dropdown-btn'
+        // ==========================================
+        // 1. JS UNTUK DROPDOWN MENU (Cukup satu kali saja)
+        // ==========================================
         var dropdowns = document.getElementsByClassName("dropdown-btn");
         var i;
 
@@ -266,17 +268,6 @@
                 } else {
                     dropdownContent.classList.add("show");
                 }
-            });
-        }
-        // 1. JS UNTUK DROPDOWN MENU
-        var dropdowns = document.getElementsByClassName("dropdown-btn");
-        for (var i = 0; i < dropdowns.length; i++) {
-            dropdowns[i].addEventListener("click", function(e) {
-                e.preventDefault();
-                this.classList.toggle("open");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.classList.contains("show")) { dropdownContent.classList.remove("show"); } 
-                else { dropdownContent.classList.add("show"); }
             });
         }
 

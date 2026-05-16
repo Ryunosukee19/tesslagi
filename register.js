@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = "indexsetelahlogin.html"; 
             } else if (semester === "2") {
                 // Ganti URL ini dengan halaman dashboard/materi semester 2 kamu
-                window.location.href = "materi_semester2.html"; 
+                window.location.href = "indexsetelahlogin2.html"; 
             }
         });
     }

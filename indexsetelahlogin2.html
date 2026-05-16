@@ -246,51 +246,43 @@
     </a>
 
     <script>
-        // ==========================================
-        // 1. JS UNTUK DROPDOWN MENU (Cukup satu kali saja)
-        // ==========================================
-        var dropdowns = document.getElementsByClassName("dropdown-btn");
-        var i;
+        // Memastikan HTML dimuat semua dulu sebelum menjalankan script
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. JS UNTUK DROPDOWN MENU
+            var dropdowns = document.getElementsByClassName("dropdown-btn");
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].addEventListener("click", function(e) {
+                    e.preventDefault(); // Mencegah munculnya '#' di URL
+                    
+                    this.classList.toggle("open");
+                    var dropdownContent = this.nextElementSibling;
+                    
+                    if (dropdownContent.classList.contains("show")) {
+                        dropdownContent.classList.remove("show");
+                    } else {
+                        dropdownContent.classList.add("show");
+                    }
+                });
+            }
 
-        for (i = 0; i < dropdowns.length; i++) {
-            dropdowns[i].addEventListener("click", function(e) {
-                e.preventDefault(); // Mencegah link pindah halaman saat diklik
-                
-                // Menambahkan efek putar panah
-                this.classList.toggle("open");
-                
-                // Mencari tag <ul> (submenu) tepat di bawah link ini
-                var dropdownContent = this.nextElementSibling;
-                
-                // Buka/Tutup submenu
-                if (dropdownContent.classList.contains("show")) {
-                    dropdownContent.classList.remove("show");
+            // ==========================================
+            // 2. JS UNTUK MENGINGAT TEMA (LOCAL STORAGE)
+            // ==========================================
+            const themeToggle = document.getElementById("theme-toggle");
+
+            if (localStorage.getItem("theme") === "light") {
+                themeToggle.checked = true;
+            }
+
+            themeToggle.addEventListener("change", function() {
+                if (this.checked) {
+                    localStorage.setItem("theme", "light");
                 } else {
-                    dropdownContent.classList.add("show");
+                    localStorage.setItem("theme", "dark");
                 }
             });
-        }
-
-        // ==========================================
-        // 2. JS UNTUK MENGINGAT TEMA (LOCAL STORAGE)
-        // ==========================================
-        const themeToggle = document.getElementById("theme-toggle");
-
-        // A. Cek memori saat halaman pertama kali dibuka
-        // Jika sebelumnya user memilih 'light', otomatis centang tombolnya
-        if (localStorage.getItem("theme") === "light") {
-            themeToggle.checked = true;
-        }
-
-        // B. Dengarkan saat user mengklik tombol tema
-        themeToggle.addEventListener("change", function() {
-            if (this.checked) {
-                // Jika dicentang (Mode Terang), simpan 'light' ke memori
-                localStorage.setItem("theme", "light");
-            } else {
-                // Jika tidak dicentang (Mode Gelap), simpan 'dark' ke memori
-                localStorage.setItem("theme", "dark");
-            }
+            
         });
     </script>
 </body>

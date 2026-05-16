@@ -182,24 +182,6 @@ body:has(#theme-toggle:checked) .icon-sun { display: inline; }
 .cat-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
 .cat-card span { font-size: 0.9rem; color: var(--primary); }
 
-/* === Floating WhatsApp & Back to Top === */
-.floating-wa {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 60px;
-    height: 60px;
-    background: #25d366;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 999;
-    transition: transform 0.3s;
-}
-.floating-wa:hover { transform: scale(1.1); }
-
 .back-to-top {
     position: fixed;
     bottom: 30px;

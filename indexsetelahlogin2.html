@@ -111,7 +111,7 @@
                 // Ubah teks dari memori (string) menjadi Objek Javascript
                 const user = JSON.parse(activeUserString);
                 // Ganti teks p dengan nama dan semester yang sesuai
-                welcomeMessage.innerHTML = `Selamat Datang <b>"${user.nama}"</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
+                welcomeMessage.innerHTML = `Selamat Datang!! <b>${user.nama}</b> di halaman kelas semester <b>${user.semester}</b>.`;
             } else {
                 // (Opsional) Jika tidak ada data login, lempar kembali ke halaman pendaftaran
                 // window.location.href = "register.html";

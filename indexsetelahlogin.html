@@ -4,22 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Edu Free - Platform Kursus Online</title>
-    <link rel="stylesheet" href="stylesetelahlogin.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        /* Warna Dasar */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-sidebar: #1e293b;
+            --primary: #38bdf8;
+            --secondary: #c084fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --sidebar-width: 260px; /* Ini ukuran frame kiri (menu) */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        /* Membagi layar menjadi flex (kiri-kanan) */
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex; 
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* =========================================
+           1. FRAME KIRI (MENU SIDEBAR)
+        ========================================= */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            padding: 25px 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links { padding-top: 15px; }
+        .nav-links li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            padding-left: 25px;
+        }
+
+        .nav-links li a.active {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        /* Toggle Tema */
+        .theme-switch-wrapper { padding: 15px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .theme-toggle-label { cursor: pointer; color: var(--text-muted); display: flex; gap: 10px; font-size: 0.95rem;}
+        .theme-checkbox { display: none; }
+
+        /* =========================================
+           2. FRAME KANAN (KONTEN UTAMA)
+        ========================================= */
+        .main-content {
+            margin-left: var(--sidebar-width); /* Menggeser konten agar tidak tertutup menu */
+            width: calc(100% - var(--sidebar-width)); /* Sisa layar untuk konten */
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        /* Desain Konten (Hero) */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.05), transparent 50%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content { flex: 1; max-width: 600px; }
+        .badge-hero {
+            display: inline-block;
+            background: rgba(192, 132, 252, 0.1);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 25px; }
+        .hero-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 35px; }
+        
+        .btn-register { 
+            display: inline-block; padding: 15px 35px; font-size: 1.1rem; border-radius: 30px; 
+            font-weight: 600; background: linear-gradient(135deg, var(--primary), #0284c7); color: #fff; 
+        }
+
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; }
+        .hero-image img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+        /* Tombol WA */
+        .floating-wa {
+            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+            background-color: #25D366; border-radius: 50px; padding: 10px;
+            display: flex; justify-content: center; align-items: center;
+        }
+    </style>
 </head>
 <body>
-
-    <a href="https://wa.me/082143511969" class="floating-wa" target="_blank" title="Hubungi Kami di WhatsApp">
-        <img src="./logowa.png" alt="WhatsApp Icon" width="40" height="35">
-    </a>
 
     <nav class="sidebar">
         <div class="logo">Edu-Free.</div>
         
         <div class="theme-switch-wrapper">
-            <input type="checkbox" id="theme-toggle" class="theme-checkbox" hidden>
+            <input type="checkbox" id="theme-toggle" class="theme-checkbox">
             <label for="theme-toggle" class="theme-toggle-label">
                 <span class="icon-moon">🌙 Mode Gelap</span>
-                <span class="icon-sun">☀️ Mode Terang</span>
             </label>
         </div>
 
@@ -28,6 +155,8 @@
             <li><a href="materi.html">Materi Semester 1</a></li>
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="tim.html">Tim Kami</a></li>
+            <li><a href="tentang.html">Tentang</a></li>
         </ul>
     </nav>
 
@@ -37,14 +166,17 @@
                 <span class="badge-hero">Platform Kursus Online</span>
                 <h1>Tingkatkan Skill Coding Kamu Bersama Kelompok Kami.</h1>
                 <p>Kuis Singkat, Video Player Page <b>Live Progress Tracker</b> dan raih sertifikat kompetensi Anda.</p>
-                <a href="katalog.html" class="btn btn-register">Jelajahi Kelas</a>
+                <a href="katalog.html" class="btn-register">Jelajahi Kelas</a>
             </div>
             <div class="hero-image">
                 <img src="program.jpg" alt="Dashboard Belajar">
             </div>
         </section>
-        
-        </main>
+    </main>
+
+    <a href="https://wa.me/082143511969" class="floating-wa" target="_blank">
+        <img src="./logowa.png" alt="WA" width="40" height="35">
+    </a>
 
 </body>
 </html>

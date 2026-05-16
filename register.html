@@ -5,21 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Gratis | Edu-Free</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="register.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0d1321; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .auth-container { width: 100%; padding: 20px; display: flex; justify-content: center; }
+        .auth-card { background-color: #151e32; padding: 40px; border-radius: 16px; width: 100%; max-width: 450px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        .logo { font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .logo .edu { color: #38bdf8; } .logo .free { color: #c084fc; }
+        .auth-title { font-size: 22px; font-weight: 600; text-align: center; margin-bottom: 5px; }
+        .auth-subtitle { font-size: 13px; color: #9ca3af; text-align: center; margin-bottom: 30px; }
+        
+        .input-group { margin-bottom: 20px; transition: all 0.3s ease; }
+        .input-group label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; }
+        .input-group input, .input-group select { width: 100%; padding: 12px 15px; background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; color: #ffffff; font-size: 14px; outline: none; transition: all 0.3s ease; }
+        .input-group input:focus, .input-group select:focus { border-color: #38bdf8; box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); }
+        .input-group select option { background-color: #1e293b; color: #ffffff; }
+        
+        .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: white; border: none; border-radius: 30px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4); transition: all 0.3s ease; margin-top: 10px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6); }
+        
+        .auth-switch { text-align: center; margin-top: 25px; font-size: 13px; color: #9ca3af; }
+        .auth-switch a { color: #38bdf8; text-decoration: none; font-weight: 600; }
+        .auth-switch a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
     <div class="auth-container">
         <div class="auth-card">
+            <div class="logo"><span class="edu">Edu</span><span class="free">-Free.</span></div>
+            <h2 class="auth-title">Buat Akun Baru</h2>
+            <p class="auth-subtitle">Bergabunglah dengan platform belajar kami.</p>
+
             <form id="registerForm">
+                <div class="input-group">
+                    <label for="role">Daftar Sebagai</label>
+                    <select id="role" required>
+                        <option value="mahasiswa" selected>👨‍🎓 Mahasiswa</option>
+                        <option value="dosen">👨‍🏫 Dosen</option>
+                    </select>
+                </div>
+
                 <div class="input-group">
                     <label for="nama">Nama Lengkap</label>
                     <input type="text" id="nama" placeholder="Masukkan Nama Lengkap" required>
                 </div>
 
-                <div class="input-group">
-                    <label for="nim">NIM</label>
-                    <input type="number" id="nim" placeholder="Masukkan NIM Anda" required>
+                <div class="input-group" id="id-container">
+                    <label for="userId" id="label-id">NIM</label>
+                    <input type="number" id="userId" placeholder="Masukkan NIM Anda" required>
                 </div>
 
                 <div class="input-group">
@@ -27,7 +63,7 @@
                     <input type="password" id="password" placeholder="Buat Password" required>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" id="semester-container">
                     <label for="semester">Pilih Semester Pembelajaran</label>
                     <select id="semester" required>
                         <option value="" disabled selected>-- Pilih Semester --</option>
@@ -39,10 +75,71 @@
                 <button type="submit" class="btn-primary">Daftar Gratis</button>
             </form>
 
-            <p class="auth-switch">Sudah punya akun? <a href="dashboardSiswa.html" id="toLogin">Masuk di sini</a></p>
+            <p class="auth-switch">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
         </div>
     </div>
 
-    <script src="register.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // LOGIKA DINAMIS MENGUBAH FORM BERDASARKAN PERAN
+            const roleSelect = document.getElementById('role');
+            const labelId = document.getElementById('label-id');
+            const inputId = document.getElementById('userId');
+            const semesterContainer = document.getElementById('semester-container');
+            const semesterSelect = document.getElementById('semester');
+
+            roleSelect.addEventListener('change', function() {
+                if (this.value === 'dosen') {
+                    labelId.textContent = 'NIP';
+                    inputId.placeholder = 'Masukkan NIP Anda';
+                    // Sembunyikan dan hilangkan kewajiban mengisi semester
+                    semesterContainer.style.display = 'none';
+                    semesterSelect.removeAttribute('required');
+                } else {
+                    labelId.textContent = 'NIM';
+                    inputId.placeholder = 'Masukkan NIM Anda';
+                    // Tampilkan kembali form semester
+                    semesterContainer.style.display = 'block';
+                    semesterSelect.setAttribute('required', 'true');
+                }
+            });
+
+            // LOGIKA SAAT TOMBOL DAFTAR DITEKAN
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); 
+                    
+                    const role = roleSelect.value;
+                    const nama = document.getElementById('nama').value;
+                    const userId = inputId.value; // Bisa berisi NIM atau NIP
+                    const password = document.getElementById('password').value;
+                    const semester = semesterSelect.value;
+
+                    // Simpan data ke memori
+                    const userData = {
+                        role: role,
+                        nama: nama,
+                        userId: userId,
+                        password: password,
+                        semester: semester
+                    };
+                    
+                    localStorage.setItem(userId, JSON.stringify(userData));
+                    localStorage.setItem('loggedInUser', JSON.stringify(userData));
+
+                    alert(`Registrasi Berhasil, ${nama}! Anda akan diarahkan ke Dashboard.`);
+
+                    // Arahkan ke halaman sesuai peran
+                    if (role === 'dosen') {
+                        window.location.href = "dashboardDosen.html"; // Harus buat file ini
+                    } else {
+                        if (semester === "1") window.location.href = "indexsetelahlogin.html"; 
+                        else if (semester === "2") window.location.href = "indexsetelahlogin2.html"; 
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

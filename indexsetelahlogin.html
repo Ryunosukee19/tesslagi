@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Edu Free - Platform Kursus Online</title>
-    
+    <link rel="stylesheet" href="styleindex.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -174,7 +174,7 @@
         }
 
         .hero-content h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 25px; }
-        .hero-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 35px; }
+        .hero-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 35px; line-height: 1.6; }
         
         .btn-register { 
             display: inline-block; padding: 15px 35px; font-size: 1.1rem; border-radius: 30px; 
@@ -224,7 +224,7 @@
 
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
-            <li><a href="index.html">Log out</a></li>
+            <li><a href="#" id="logout-btn">Log out</a></li>
         </ul>
     </nav>
 
@@ -233,7 +233,7 @@
             <div class="hero-content">
                 <span class="badge-hero">Platform Kursus Online</span>
                 <h1>Tingkatkan Skill Coding Kamu Bersama Kelompok Kami.</h1>
-                <p>Selamat Datang di halaman khusus Mahasiswa yang telah melakukan registrasi/login.</p>
+                <p id="welcome-message">Selamat Datang di halaman khusus Mahasiswa yang telah melakukan registrasi/login.</p>
             </div>
             <div class="hero-image">
                 <img src="program.jpg" alt="Dashboard Belajar">
@@ -249,7 +249,27 @@
         // Memastikan HTML dimuat semua dulu sebelum menjalankan script
         document.addEventListener("DOMContentLoaded", function() {
             
-            // 1. JS UNTUK DROPDOWN MENU
+            // 1. JS UNTUK DINAMIS NAMA DAN SEMESTER
+            const welcomeMessage = document.getElementById('welcome-message');
+            const activeUserString = localStorage.getItem('loggedInUser');
+
+            if (activeUserString) {
+                const user = JSON.parse(activeUserString);
+                welcomeMessage.innerHTML = `Selamat Datang <b>"${user.nama}"</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
+            }
+
+            // 2. JS UNTUK LOGOUT
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('loggedInUser');
+                    alert("Berhasil Log Out!");
+                    window.location.href = "index.html";
+                });
+            }
+
+            // 3. JS UNTUK DROPDOWN MENU
             var dropdowns = document.getElementsByClassName("dropdown-btn");
             for (var i = 0; i < dropdowns.length; i++) {
                 dropdowns[i].addEventListener("click", function(e) {
@@ -267,7 +287,7 @@
             }
 
             // ==========================================
-            // 2. JS UNTUK MENGINGAT TEMA (LOCAL STORAGE)
+            // 4. JS UNTUK MENGINGAT TEMA (LOCAL STORAGE)
             // ==========================================
             const themeToggle = document.getElementById("theme-toggle");
 

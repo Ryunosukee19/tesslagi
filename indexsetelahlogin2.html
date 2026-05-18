@@ -238,8 +238,6 @@
 
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
-            
-            <li><a href="#" id="logout-sidebar">Log out</a></li>
         </ul>
     </nav>
 
@@ -261,7 +259,7 @@
 
                 <h3 class="popover-greeting" id="popover-greeting">Halo, Pengguna.</h3>
                 <p class="popover-email" id="popover-id">NIM: 0000000000</p>
-                <span class="popover-role" id="popover-role">👨‍🎓 Mahasiswa</span>
+                <span class="popover-role" id="popover-role">Mahasiswa</span>
                 
                 <button class="btn-popover-action btn-logout" id="logout-btn">Log out</button>
             </div>
@@ -309,7 +307,7 @@
                 // Set Identitas Berdasarkan Role (Mahasiswa / Dosen)
                 if (user.role === 'dosen') {
                     document.getElementById('popover-id').textContent = `NIP: ${user.userId}`;
-                    document.getElementById('popover-role').textContent = "👨‍🏫 Dosen";
+                    document.getElementById('popover-role').textContent = "Dosen";
                     document.getElementById('popover-role').style.color = "var(--secondary)";
                     document.getElementById('popover-role').style.background = "rgba(192, 132, 252, 0.15)";
                 } else {

@@ -4,52 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Edu Free - Platform Kursus Online</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styleindex.css">
     <style>
-        /* =========================================
-           TEMA & RESET DASAR
-        ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        /* Warna Dasar (Default Mode Gelap) */
         :root {
-            --bg-dark: #0f172a; --bg-sidebar: #1e293b; --bg-card: rgba(30, 41, 59, 0.85);
-            --primary: #38bdf8; --secondary: #c084fc; --text-main: #f8fafc;
-            --text-muted: #94a3b8; --border-color: rgba(255, 255, 255, 0.1); --sidebar-width: 260px;
+            --bg-dark: #0f172a;
+            --bg-sidebar: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.85);
+            --primary: #38bdf8;
+            --secondary: #c084fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --sidebar-width: 260px;
         }
 
+        /* LOGIKA TEMA TERANG (LIGHT MODE) */
         body:has(#theme-toggle:checked) {
-            --bg-dark: #f1f5f9; --bg-sidebar: #ffffff; --bg-card: rgba(255, 255, 255, 0.9);
-            --primary: #0284c7; --secondary: #9333ea; --text-main: #0f172a;
-            --text-muted: #475569; --border-color: rgba(0, 0, 0, 0.1); 
+            --bg-dark: #f8fafc;        
+            --bg-sidebar: #ffffff;        
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --primary: #0284c7;        
+            --secondary: #9333ea;      
+            --text-main: #0f172a;      
+            --text-muted: #475569;     
+            --border-color: rgba(0, 0, 0, 0.1); 
         }
         
-        .icon-sun { display: none; } body:has(#theme-toggle:checked) .icon-moon { display: none; } body:has(#theme-toggle:checked) .icon-sun { display: inline; }
+        .icon-sun { display: none; }
+        body:has(#theme-toggle:checked) .icon-moon { display: none; }
+        body:has(#theme-toggle:checked) .icon-sun { display: inline; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); display: flex; transition: all 0.3s ease; overflow-x: hidden;}
-        a { text-decoration: none; color: inherit; } ul { list-style: none; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
         /* =========================================
-           SIDEBAR NAVIGATION (KIRI)
+           1. FRAME KIRI (MENU SIDEBAR)
         ========================================= */
-        .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh; background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 1000; transition: all 0.3s ease; overflow-y: auto; }
-        .sidebar::-webkit-scrollbar { width: 5px; } .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
-        .logo { font-size: 1.8rem; font-weight: 800; padding: 25px 20px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; border-bottom: 1px solid var(--border-color); }
-        .theme-switch-wrapper { padding: 15px 20px; border-bottom: 1px solid var(--border-color); } .theme-toggle-label { cursor: pointer; color: var(--text-muted); display: flex; gap: 10px; font-size: 0.95rem; font-weight: 500;} .theme-toggle-label:hover { color: var(--text-main); } .theme-checkbox { display: none; } 
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            overflow-y: auto; 
+        }
         
-        .nav-links { padding-top: 15px; flex-grow: 1; } 
-        .nav-links li a { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; color: var(--text-muted); font-weight: 500; transition: all 0.3s ease; cursor: pointer; }
-        .nav-links li a:hover { background-color: rgba(148, 163, 184, 0.1); color: var(--text-main); padding-left: 25px; }
-        .nav-links li a.active { background-color: rgba(56, 189, 248, 0.15); color: var(--primary); border-left: 4px solid var(--primary); font-weight: 600; }
+        .sidebar::-webkit-scrollbar { width: 5px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            padding: 25px 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .theme-switch-wrapper { padding: 15px 20px; border-bottom: 1px solid var(--border-color); }
+        .theme-toggle-label { cursor: pointer; color: var(--text-muted); display: flex; gap: 10px; font-size: 0.95rem; font-weight: 500;}
+        .theme-toggle-label:hover { color: var(--text-main); }
+        .theme-checkbox { display: none; } 
+
+        .nav-links { padding-top: 15px; padding-bottom: 30px; flex-grow: 1; }
+        .nav-links li a {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 15px 20px;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links li a:hover {
+            background-color: rgba(148, 163, 184, 0.1);
+            color: var(--text-main);
+            padding-left: 25px;
+        }
+
+        .nav-links li a.active {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .dropdown-btn { cursor: pointer; }
+        .arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown-btn.open .arrow { transform: rotate(180deg); }
+
+        .dropdown-container { display: none; background-color: rgba(0, 0, 0, 0.1); flex-direction: column; }
+        .dropdown-container.show { display: flex; }
+        .dropdown-container li a { padding: 12px 20px 12px 40px; font-size: 0.95rem; border-left: none !important; }
+        .dropdown-container li a:hover { padding-left: 45px; }
         
-        .dropdown-btn { cursor: pointer; } .arrow { font-size: 0.7rem; transition: transform 0.3s ease; } .dropdown-btn.open .arrow { transform: rotate(180deg); }
-        .dropdown-container { display: none; background-color: rgba(0, 0, 0, 0.05); flex-direction: column; } .dropdown-container.show { display: flex; } .dropdown-container li a { padding: 12px 20px 12px 40px; font-size: 0.95rem; border-left: none !important; } .dropdown-container li a:hover { padding-left: 45px; }
-        
-        /* Gaya khusus teks log out di sidebar agar terlihat sebagai tombol aksi penting */
         #logout-sidebar { color: #f87171; }
         #logout-sidebar:hover { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; }
 
         /* =========================================
-           KONTEN UTAMA & HEADER KANAN ATAS
+           2. FRAME KANAN (KONTEN UTAMA)
         ========================================= */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); min-height: 100vh; padding: 30px 40px; position: relative; }
         
@@ -80,8 +156,6 @@
         }
         .profile-popover.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 
-        .popover-email { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 500;}
-
         /* Wadah Foto Profil Besar di Pop-up */
         .popover-avatar-wrapper {
             position: relative; width: 100px; height: 100px; margin-bottom: 20px; cursor: pointer;
@@ -105,7 +179,9 @@
         
         #file-input { display: none; }
 
-        .popover-greeting { font-size: 1.5rem; font-weight: 600; color: var(--text-main); margin-bottom: 5px; }
+        /* Nama, NIM/NIP, dan Role */
+        .popover-greeting { font-size: 1.25rem; font-weight: 600; color: var(--text-main); margin-bottom: 2px; line-height: 1.3;}
+        .popover-email { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;}
         .popover-role { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(56, 189, 248, 0.15); color: var(--primary); font-size: 0.75rem; font-weight: 600; margin-bottom: 25px;}
 
         /* Tombol di dalam Pop-up */
@@ -151,12 +227,12 @@
             
             <li>
                 <a class="dropdown-btn">
-                    Materi Semester 2 
+                    Materi Semester 1 
                     <span class="arrow">▼</span>
                 </a>
                 <ul class="dropdown-container">
-                    <li><a href="materidpw.html">DPW</a></li>
-                    <li><a href="materistrukdat.html">Struktur Data</a></li>
+                    <li><a href="materipti.html">PTI</a></li>
+                    <li><a href="materialpro.html">Alpro</a></li>
                 </ul>
             </li>
 
@@ -176,7 +252,6 @@
             </div>
 
             <div class="profile-popover" id="profile-popover">
-                <p class="popover-email" id="popover-id">NIM: 0000000000</p>
                 
                 <div class="popover-avatar-wrapper" onclick="triggerUpload()" title="Ubah foto profil">
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
@@ -185,9 +260,8 @@
                 <input type="file" id="file-input" accept="image/*">
 
                 <h3 class="popover-greeting" id="popover-greeting">Halo, Pengguna.</h3>
-                <span class="popover-role" id="popover-role">Mahasiswa</span>
-
-                <button class="btn-popover-action" onclick="alert('Fitur Kelola Akun sedang dalam pengembangan!')">Kelola Akun Anda</button>
+                <p class="popover-email" id="popover-id">NIM: 0000000000</p>
+                <span class="popover-role" id="popover-role">👨‍🎓 Mahasiswa</span>
                 
                 <button class="btn-popover-action btn-logout" id="logout-btn">Log out</button>
             </div>
@@ -229,9 +303,8 @@
                 // --- Pesan Utama Beranda ---
                 welcomeMessage.innerHTML = `Selamat Datang <b>"${user.nama}"</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
 
-                // --- Teks Sapaan Pop-up (Ambil Nama Depan Saja) ---
-                const namaPanggilan = user.nama.split(' ')[0]; 
-                document.getElementById('popover-greeting').textContent = `Halo, ${namaPanggilan}.`;
+                // --- Teks Dalam Pop-up Profil (Full Name & ID di bawahnya) ---
+                document.getElementById('popover-greeting').textContent = `Halo, ${user.nama}.`;
                 
                 // Set Identitas Berdasarkan Role (Mahasiswa / Dosen)
                 if (user.role === 'dosen') {

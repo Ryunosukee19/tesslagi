@@ -54,16 +54,9 @@
            1. FRAME KIRI (MENU SIDEBAR)
         ========================================= */
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background-color: var(--bg-sidebar);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
+            background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color);
+            display: flex; flex-direction: column; z-index: 1000;
             transition: background-color 0.3s ease, border-color 0.3s ease;
             overflow-y: auto; 
         }
@@ -72,13 +65,9 @@
         .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            padding: 25px 20px;
+            font-size: 1.8rem; font-weight: 800; padding: 25px 20px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            -webkit-background-clip: text; background-clip: text; color: transparent;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -89,28 +78,12 @@
 
         .nav-links { padding-top: 15px; padding-bottom: 30px; flex-grow: 1; }
         .nav-links li a {
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            padding: 15px 20px;
-            color: var(--text-muted);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; color: var(--text-muted); font-weight: 500;
+            transition: all 0.3s ease; cursor: pointer;
         }
-
-        .nav-links li a:hover {
-            background-color: rgba(148, 163, 184, 0.1);
-            color: var(--text-main);
-            padding-left: 25px;
-        }
-
-        .nav-links li a.active {
-            background-color: rgba(56, 189, 248, 0.15);
-            color: var(--primary);
-            border-left: 4px solid var(--primary);
-            font-weight: 600;
-        }
+        .nav-links li a:hover { background-color: rgba(148, 163, 184, 0.1); color: var(--text-main); padding-left: 25px; }
+        .nav-links li a.active { background-color: rgba(56, 189, 248, 0.15); color: var(--primary); border-left: 4px solid var(--primary); font-weight: 600; }
 
         .dropdown-btn { cursor: pointer; }
         .arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
@@ -131,65 +104,48 @@
         
         .top-header { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 30px; position: relative; }
         
-        /* Ikon Profil Lingkaran Kecil di Pojok Kanan Atas */
+        /* Ikon Profil Mini di Pojok Kanan Atas dengan Ikon Anonymous Abu-abu Bersih */
         .header-profile {
             display: flex; align-items: center; cursor: pointer;
             padding: 5px; border-radius: 50px; transition: all 0.3s ease;
         }
         .header-profile:hover { background: rgba(255,255,255,0.05); transform: scale(1.05); }
-        .header-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" id="header-avatar" class="header-avatar" alt="Profil">
 
         /* =========================================
            POP-UP PROFIL MELAYANG (STYLE GEMINI)
         ========================================= */
         .profile-popover {
-            position: absolute; top: 60px; right: 0;
-            width: 340px; background: var(--bg-card);
+            position: absolute; top: 60px; right: 0; width: 340px; background: var(--bg-card);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-color); border-radius: 24px;
             padding: 30px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            
-            /* Animasi Efek Transisi Muncul/Hilang */
             opacity: 0; visibility: hidden; transform: translateY(-15px) scale(0.95);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 2000;
         }
         .profile-popover.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 
-        /* Wadah Foto Profil Besar di Pop-up */
-        .popover-avatar-wrapper {
-            position: relative; width: 100px; height: 100px; margin-bottom: 20px; cursor: pointer;
-        }
-        .popover-avatar {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-            border: 3px solid var(--border-color); transition: all 0.3s ease;
-        }
+        /* Wadah Foto Profil Besar di Pop-up dengan Ikon Anonymous Abu-abu Besar Bersih */
+        .popover-avatar-wrapper { position: relative; width: 100px; height: 100px; margin-bottom: 20px; cursor: pointer; }
+        <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
         .popover-avatar-wrapper:hover .popover-avatar { border-color: var(--primary); opacity: 0.8; }
         
-        /* Badge Kamera Kecil */
         .camera-badge {
-            position: absolute; bottom: 0; right: 0;
-            background: var(--bg-sidebar); border: 1px solid var(--border-color);
-            width: 32px; height: 32px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            position: absolute; bottom: 0; right: 0; background: var(--bg-sidebar); border: 1px solid var(--border-color);
+            width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s ease;
         }
         .popover-avatar-wrapper:hover .camera-badge { transform: scale(1.1); background: var(--primary); color: #fff;}
-        
         #file-input { display: none; }
 
-        /* Nama, NIM/NIP, dan Role */
+        /* Penyesuaian font dan margin untuk tampilan baru yang padat dan personal */
         .popover-greeting { font-size: 1.25rem; font-weight: 600; color: var(--text-main); margin-bottom: 2px; line-height: 1.3;}
         .popover-email { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;}
         .popover-role { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(56, 189, 248, 0.15); color: var(--primary); font-size: 0.75rem; font-weight: 600; margin-bottom: 25px;}
 
         /* Tombol di dalam Pop-up */
-        .btn-popover-action {
-            width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color);
-            background: transparent; color: var(--text-main); font-weight: 500; font-size: 0.95rem;
-            cursor: pointer; transition: all 0.3s ease; margin-bottom: 10px;
-        }
+        .btn-popover-action { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; margin-bottom: 10px; }
         .btn-popover-action:hover { background: rgba(255,255,255,0.05); border-color: var(--primary); }
         .btn-logout { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
         .btn-logout:hover { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; }
@@ -246,13 +202,13 @@
         <header class="top-header">
             
             <div class="header-profile" id="profile-trigger" title="Akun Edu-Free Anda">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" id="header-avatar" class="header-avatar" alt="Profil">
+                <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" id="header-avatar" class="header-avatar" alt="Profil">
             </div>
 
             <div class="profile-popover" id="profile-popover">
                 
                 <div class="popover-avatar-wrapper" onclick="triggerUpload()" title="Ubah foto profil">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
                     <div class="camera-badge">📷</div>
                 </div>
                 <input type="file" id="file-input" accept="image/*">
@@ -298,9 +254,10 @@
                 const user = JSON.parse(activeUserString);
 
                 // --- Pesan Utama Beranda ---
-                welcomeMessage.innerHTML = `Selamat Datang <b>"${user.nama}"</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
+                welcomeMessage.innerHTML = `Selamat Datang <b>${user.nama}</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
 
                 // --- Teks Dalam Pop-up Profil (Full Name & ID di bawahnya) ---
+                // Sapaan pop-up siswa "Halo, Dwi Farhan Hidayat."
                 document.getElementById('popover-greeting').textContent = `Halo, ${user.nama}.`;
                 
                 // Set Identitas Berdasarkan Role (Mahasiswa / Dosen)
@@ -310,10 +267,11 @@
                     document.getElementById('popover-role').style.color = "var(--secondary)";
                     document.getElementById('popover-role').style.background = "rgba(192, 132, 252, 0.15)";
                 } else {
-                    document.getElementById('popover-id').textContent = `NIM: ${user.userId}`;
+                    document.getElementById('popover-id').textContent = `NIM: ${user.userId}`; // NIM pop-up siswa "NIM: 250411100157"
                 }
 
                 // --- Logika Sinkronisasi Gambar Avatar (Lokal) ---
+                // Ikon anonim abu-abu Flaticon standar bersih
                 const photoStorageKey = 'profilePic_' + user.userId;
                 const savedPhoto = localStorage.getItem(photoStorageKey);
                 const headerAvatar = document.getElementById('header-avatar');

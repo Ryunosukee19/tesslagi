@@ -169,7 +169,6 @@
             </li>
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
-            <li><a href="#" id="logout-sidebar">Log out</a></li>
         </ul>
     </nav>
 
@@ -177,22 +176,22 @@
         <section class="hero">
             
             <div class="header-profile" id="profile-trigger" title="Akun Edu-Free Anda">
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="header-avatar" class="header-avatar" alt="Profil">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" id="header-avatar" class="header-avatar" alt="Profil">
             </div>
 
             <div class="profile-popover" id="profile-popover">
                 
                 <div class="popover-avatar-wrapper" onclick="triggerUpload()" title="Ubah foto profil">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
                     <div class="camera-badge">📷</div>
                 </div>
                 <input type="file" id="file-input" accept="image/*">
                 
-                <button id="btn-hapus-foto" class="btn-hapus-foto">🗑️ Hapus Foto</button>
+                <button id="btn-hapus-foto" class="btn-hapus-foto">Hapus Foto</button>
 
                 <h3 class="popover-greeting" id="popover-greeting">Halo, Pengguna.</h3>
                 <p class="popover-email" id="popover-id">NIM: 0000000000</p>
-                <span class="popover-role" id="popover-role">👨‍🎓 Mahasiswa</span>
+                <span class="popover-role" id="popover-role">Mahasiswa</span>
                 
                 <button class="btn-popover-action btn-logout" id="logout-btn">Log out</button>
             </div>
@@ -201,7 +200,6 @@
                 <span class="badge-hero">Platform Kursus Online</span>
                 <h1>Tingkatkan Skill Coding Kamu Bersama Kelompok Kami.</h1>
                 <p id="welcome-message">Selamat Datang di halaman kelas.</p>
-                <a href="katalog.html" class="btn-register">Mulai Belajar</a>
             </div>
             <div class="hero-image">
                 <img src="program.jpg" alt="Dashboard Belajar">
@@ -221,8 +219,8 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             
-            // FOTO DEFAULT ABU-ABU
-            const defaultAvatarUrl = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+            // FOTO DEFAULT NETRAL ABU-ABU 
+            const defaultAvatarUrl = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
 
             // 1. MEMBACA SESI DAN PASANG DATA USER SECARA DINAMIS
             const welcomeMessage = document.getElementById('welcome-message');
@@ -284,7 +282,7 @@
                         // 1. Hapus dari penyimpanan browser
                         localStorage.removeItem(photoStorageKey);
                         
-                        // 2. Kembalikan gambar ke ikon default abu-abu
+                        // 2. Kembalikan gambar ke ikon default netral abu-abu
                         headerAvatar.src = defaultAvatarUrl;
                         popoverAvatar.src = defaultAvatarUrl;
                         

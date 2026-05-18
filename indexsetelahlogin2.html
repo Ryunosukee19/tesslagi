@@ -4,102 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Edu Free - Platform Kursus Online</title>
-    <link rel="stylesheet" href="styleindex.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
         /* =========================================
            TEMA & RESET DASAR
         ========================================= */
         :root {
-            --bg-dark: #0f172a;
-            --bg-sidebar: #1e293b;
-            --bg-card: rgba(30, 41, 59, 0.6); 
-            --primary: #38bdf8;
-            --secondary: #c084fc;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --sidebar-width: 260px;
+            --bg-dark: #0f172a; --bg-sidebar: #1e293b; --bg-card: rgba(30, 41, 59, 0.85);
+            --primary: #38bdf8; --secondary: #c084fc; --text-main: #f8fafc;
+            --text-muted: #94a3b8; --border-color: rgba(255, 255, 255, 0.1); --sidebar-width: 260px;
         }
 
         body:has(#theme-toggle:checked) {
-            --bg-dark: #f8fafc;        
-            --bg-sidebar: #ffffff;        
-            --bg-card: rgba(255, 255, 255, 0.7);
-            --primary: #0284c7;        
-            --secondary: #9333ea;      
-            --text-main: #0f172a;      
-            --text-muted: #475569;     
-            --border-color: rgba(0, 0, 0, 0.1); 
+            --bg-dark: #f1f5f9; --bg-sidebar: #ffffff; --bg-card: rgba(255, 255, 255, 0.9);
+            --primary: #0284c7; --secondary: #9333ea; --text-main: #0f172a;
+            --text-muted: #475569; --border-color: rgba(0, 0, 0, 0.1); 
         }
         
-        .icon-sun { display: none; }
-        body:has(#theme-toggle:checked) .icon-moon { display: none; }
-        body:has(#theme-toggle:checked) .icon-sun { display: inline; }
+        .icon-sun { display: none; } body:has(#theme-toggle:checked) .icon-moon { display: none; } body:has(#theme-toggle:checked) .icon-sun { display: inline; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            display: flex; 
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+        body { background-color: var(--bg-dark); color: var(--text-main); display: flex; transition: all 0.3s ease; overflow-x: hidden;}
+        a { text-decoration: none; color: inherit; } ul { list-style: none; }
 
         /* =========================================
-           1. FRAME KIRI (MENU SIDEBAR)
+           SIDEBAR NAVIGATION (KIRI)
         ========================================= */
-        .sidebar {
-            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
-            background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color);
-            display: flex; flex-direction: column; z-index: 1000;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-            overflow-y: auto; 
-        }
+        .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh; background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 1000; transition: all 0.3s ease; overflow-y: auto; }
+        .sidebar::-webkit-scrollbar { width: 5px; } .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+        .logo { font-size: 1.8rem; font-weight: 800; padding: 25px 20px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; border-bottom: 1px solid var(--border-color); }
+        .theme-switch-wrapper { padding: 15px 20px; border-bottom: 1px solid var(--border-color); } .theme-toggle-label { cursor: pointer; color: var(--text-muted); display: flex; gap: 10px; font-size: 0.95rem; font-weight: 500;} .theme-toggle-label:hover { color: var(--text-main); } .theme-checkbox { display: none; } 
         
-        .sidebar::-webkit-scrollbar { width: 5px; }
-        .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
-
-        .logo {
-            font-size: 1.8rem; font-weight: 800; padding: 25px 20px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .theme-switch-wrapper { padding: 15px 20px; border-bottom: 1px solid var(--border-color); }
-        .theme-toggle-label { cursor: pointer; color: var(--text-muted); display: flex; gap: 10px; font-size: 0.95rem; font-weight: 500;}
-        .theme-toggle-label:hover { color: var(--text-main); }
-        .theme-checkbox { display: none; } 
-
-        .nav-links { padding-top: 15px; padding-bottom: 30px; flex-grow: 1; }
-        .nav-links li a {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 20px; color: var(--text-muted); font-weight: 500;
-            transition: all 0.3s ease; cursor: pointer;
-        }
+        .nav-links { padding-top: 15px; flex-grow: 1; } 
+        .nav-links li a { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; color: var(--text-muted); font-weight: 500; transition: all 0.3s ease; cursor: pointer; }
         .nav-links li a:hover { background-color: rgba(148, 163, 184, 0.1); color: var(--text-main); padding-left: 25px; }
         .nav-links li a.active { background-color: rgba(56, 189, 248, 0.15); color: var(--primary); border-left: 4px solid var(--primary); font-weight: 600; }
-
-        .dropdown-btn { cursor: pointer; }
-        .arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
-        .dropdown-btn.open .arrow { transform: rotate(180deg); }
-
-        .dropdown-container { display: none; background-color: rgba(0, 0, 0, 0.1); flex-direction: column; }
-        .dropdown-container.show { display: flex; }
-        .dropdown-container li a { padding: 12px 20px 12px 40px; font-size: 0.95rem; border-left: none !important; }
-        .dropdown-container li a:hover { padding-left: 45px; }
+        
+        .dropdown-btn { cursor: pointer; } .arrow { font-size: 0.7rem; transition: transform 0.3s ease; } .dropdown-btn.open .arrow { transform: rotate(180deg); }
+        .dropdown-container { display: none; background-color: rgba(0, 0, 0, 0.05); flex-direction: column; } .dropdown-container.show { display: flex; } .dropdown-container li a { padding: 12px 20px 12px 40px; font-size: 0.95rem; border-left: none !important; } .dropdown-container li a:hover { padding-left: 45px; }
         
         #logout-sidebar { color: #f87171; }
         #logout-sidebar:hover { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; }
 
         /* =========================================
-           2. FRAME KANAN (KONTEN UTAMA)
+           KONTEN UTAMA
         ========================================= */
         .main-content { 
             margin-left: var(--sidebar-width); 
@@ -107,78 +56,88 @@
             min-height: 100vh; 
             padding: 40px; 
             display: flex;
-            align-items: center; 
+            align-items: center;
         }
 
         /* =========================================
-           DASHBOARD HERO BODY & PROFIL KARTU
+           DASHBOARD HERO BODY (Kontainer Utama)
         ========================================= */
         .hero { 
             display: flex; align-items: center; justify-content: space-between; gap: 40px; 
             background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.05), transparent 50%); 
-            padding: 60px 40px; border-radius: 20px; border: 1px solid var(--border-color); 
-            width: 100%; position: relative; /* CRITICAL: Agar kartu profil menempel di dalam sini */
-            overflow: hidden;
-            min-height: 450px;
+            padding: 50px 40px; border-radius: 20px; border: 1px solid var(--border-color); 
+            width: 100%; position: relative; min-height: 500px;
         }
 
-        .hero-content { flex: 1; max-width: 550px; z-index: 2; }
+        .hero-content { flex: 1; max-width: 600px; z-index: 2;}
         .badge-hero { display: inline-block; background: rgba(192, 132, 252, 0.1); color: var(--secondary); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
         .hero-content h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 25px; }
         .hero-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 35px; line-height: 1.6; }
-        .btn-register { display:inline-block; margin-top:10px; background: linear-gradient(135deg, var(--primary), #0284c7); color: #fff; padding: 15px 35px; border-radius: 30px; font-weight: 600; transition: transform 0.3s; }
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; z-index: 1;} 
+        .hero-image img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .btn-register { display:inline-block; margin-top:15px; background: linear-gradient(135deg, var(--primary), #0284c7); color: #fff; padding: 15px 35px; border-radius: 30px; font-weight: 600; transition: transform 0.3s; }
         .btn-register:hover { transform: translateY(-3px); }
 
-        .hero-image { flex: 1; display: flex; justify-content: flex-end; z-index: 1; } 
-        .hero-image img { width: 100%; max-width: 600px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); opacity: 0.8; }
-
-        /* KARTU PROFIL MELAYANG DI POJOK KANAN ATAS HERO */
-        .hero-profile-card {
-            position: absolute;
-            top: 30px; 
-            right: 30px;
-            width: 280px; 
-            background: var(--bg-card);
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color); 
-            border-radius: 20px;
-            padding: 25px 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            z-index: 10; 
-            transition: transform 0.3s ease;
+        /* =========================================
+           IKON PROFIL DI DALAM HERO (POJOK KANAN ATAS)
+        ========================================= */
+        .header-profile {
+            position: absolute; top: 30px; right: 30px;
+            display: flex; align-items: center; cursor: pointer;
+            padding: 4px; border-radius: 50px; transition: all 0.3s ease;
+            background: rgba(255,255,255,0.02); z-index: 10;
         }
-        .hero-profile-card:hover { transform: translateY(-5px); }
+        .header-profile:hover { background: rgba(56, 189, 248, 0.1); transform: scale(1.05); }
+        .header-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); background-color: #fff;}
 
-        /* Avatar di dalam Kartu Profil */
-        .profile-avatar-wrapper { position: relative; width: 90px; height: 90px; margin-bottom: 15px; cursor: pointer; }
-        .profile-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); transition: all 0.3s ease; }
-        .profile-avatar-wrapper:hover .profile-avatar { border-color: var(--primary); opacity: 0.8; }
+        /* =========================================
+           POP-UP PROFIL MELAYANG (STYLE GEMINI)
+        ========================================= */
+        .profile-popover {
+            position: absolute; top: 90px; right: 30px;
+            width: 320px; background: var(--bg-card);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color); border-radius: 24px;
+            padding: 30px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            opacity: 0; visibility: hidden; transform: translateY(-15px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 2000;
+        }
+        .profile-popover.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+        .popover-avatar-wrapper { position: relative; width: 100px; height: 100px; margin-bottom: 10px; cursor: pointer; }
+        .popover-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); transition: all 0.3s ease; background-color: #fff;}
+        .popover-avatar-wrapper:hover .popover-avatar { border-color: var(--primary); opacity: 0.8; }
         
         .camera-badge {
-            position: absolute; bottom: -2px; right: -2px;
+            position: absolute; bottom: 0; right: 0;
             background: var(--bg-sidebar); border: 1px solid var(--border-color);
-            width: 30px; height: 30px; border-radius: 50%;
+            width: 32px; height: 32px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            font-size: 0.85rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
         }
-        .profile-avatar-wrapper:hover .camera-badge { transform: scale(1.1); background: var(--primary); color: #fff;}
+        .popover-avatar-wrapper:hover .camera-badge { transform: scale(1.1); background: var(--primary); color: #fff;}
+        
         #file-input { display: none; }
 
-        /* Teks di dalam Kartu Profil */
-        .profile-greeting { font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; line-height: 1.3;}
-        .profile-email { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;}
-        .profile-role { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(56, 189, 248, 0.15); color: var(--primary); font-size: 0.75rem; font-weight: 600; margin-bottom: 20px;}
-
-        /* Tombol Logout di dalam Kartu Profil */
-        .btn-logout-card {
-            width: 100%; padding: 10px; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.3);
-            background: transparent; color: #ef4444; font-weight: 500; font-size: 0.9rem;
-            cursor: pointer; transition: all 0.3s ease;
+        /* GAYA TOMBOL HAPUS FOTO */
+        .btn-hapus-foto {
+            background: transparent; border: none; color: #ef4444;
+            font-size: 0.8rem; font-weight: 500; cursor: pointer;
+            margin-bottom: 15px; padding: 5px 10px; border-radius: 10px;
+            transition: all 0.3s ease; display: none; /* Sembunyikan di awal */
         }
-        .btn-logout-card:hover { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; }
+        .btn-hapus-foto:hover { background-color: rgba(239, 68, 68, 0.1); }
+
+        .popover-greeting { font-size: 1.25rem; font-weight: 600; color: var(--text-main); margin-bottom: 2px; line-height: 1.3;}
+        .popover-email { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;}
+        .popover-role { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(56, 189, 248, 0.15); color: var(--primary); font-size: 0.75rem; font-weight: 600; margin-bottom: 25px;}
+
+        .btn-popover-action { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; margin-bottom: 10px; }
+        .btn-popover-action:hover { background: rgba(255,255,255,0.05); border-color: var(--primary); }
+        .btn-logout { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
+        .btn-logout:hover { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; }
 
         .floating-wa { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background-color: #25D366; border-radius: 50px; padding: 10px; display: flex; justify-content: center; align-items: center; transition: transform 0.3s ease; } .floating-wa:hover { transform: scale(1.1); }
     </style>
@@ -198,56 +157,55 @@
 
         <ul class="nav-links">
             <li><a href="#" class="active">Beranda</a></li>
-            
             <li>
                 <a class="dropdown-btn">
-                    Materi Semester 1 
+                    Materi Semester 2 
                     <span class="arrow">▼</span>
                 </a>
                 <ul class="dropdown-container">
-                    <li><a href="materipti.html">PTI</a></li>
-                    <li><a href="materialpro.html">Alpro</a></li>
+                    <li><a href="materidpw.html">DPW</a></li>
+                    <li><a href="materistrukdat.html">Struktur Data</a></li>
                 </ul>
             </li>
-
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
-            
-            <li><a href="#" id="logout-sidebar">Log out</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
-        
         <section class="hero">
             
-            <div class="hero-profile-card">
-                <div class="profile-avatar-wrapper" onclick="triggerUpload()" title="Ubah foto profil">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="profile-avatar" class="profile-avatar" alt="Foto Profil">
+            <div class="header-profile" id="profile-trigger" title="Akun Edu-Free Anda">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" id="header-avatar" class="header-avatar" alt="Profil">
+            </div>
+
+            <div class="profile-popover" id="profile-popover">
+                
+                <div class="popover-avatar-wrapper" onclick="triggerUpload()" title="Ubah foto profil">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
                     <div class="camera-badge">📷</div>
                 </div>
                 <input type="file" id="file-input" accept="image/*">
-
-                <h3 class="profile-greeting" id="profile-greeting">Halo, Pengguna.</h3>
-                <p class="profile-email" id="profile-id">NIM: 0000000000</p>
-                <span class="profile-role" id="profile-role">👨‍🎓 Mahasiswa</span>
                 
-                <button class="btn-logout-card" id="logout-btn">Log out</button>
+                <button id="btn-hapus-foto" class="btn-hapus-foto">Hapus Foto</button>
+
+                <h3 class="popover-greeting" id="popover-greeting">Halo, Pengguna.</h3>
+                <p class="popover-email" id="popover-id">NIM: 0000000000</p>
+                <span class="popover-role" id="popover-role">Mahasiswa</span>
+                
+                <button class="btn-popover-action btn-logout" id="logout-btn">Log out</button>
             </div>
 
             <div class="hero-content">
                 <span class="badge-hero">Platform Kursus Online</span>
                 <h1>Tingkatkan Skill Coding Kamu Bersama Kelompok Kami.</h1>
                 <p id="welcome-message">Selamat Datang di halaman kelas.</p>
-                <a href="katalog.html" class="btn-register">Mulai Belajar</a>
             </div>
-
             <div class="hero-image">
                 <img src="program.jpg" alt="Dashboard Belajar">
             </div>
-
+            
         </section>
-
     </main>
 
     <a href="https://wa.me/082143511969" class="floating-wa" target="_blank" title="Hubungi Kami di WhatsApp">
@@ -261,6 +219,9 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             
+            // FOTO DEFAULT NETRAL ABU-ABU 
+            const defaultAvatarUrl = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
             // 1. MEMBACA SESI DAN PASANG DATA USER SECARA DINAMIS
             const welcomeMessage = document.getElementById('welcome-message');
             const activeUserString = localStorage.getItem('loggedInUser');
@@ -268,68 +229,110 @@
             if (activeUserString) {
                 const user = JSON.parse(activeUserString);
 
-                // --- Pesan Utama Beranda ---
+                // --- Teks Sapaan ---
                 welcomeMessage.innerHTML = `Selamat Datang <b>${user.nama}</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
-
-                // --- Teks Dalam Kartu Profil ---
-                document.getElementById('profile-greeting').textContent = `Halo, ${user.nama}.`;
+                document.getElementById('popover-greeting').textContent = `Halo, ${user.nama}.`;
                 
                 // Set Identitas Berdasarkan Role (Mahasiswa / Dosen)
                 if (user.role === 'dosen') {
-                    document.getElementById('profile-id').textContent = `NIP: ${user.userId}`;
-                    document.getElementById('profile-role').textContent = "👨‍🏫 Dosen";
-                    document.getElementById('profile-role').style.color = "var(--secondary)";
-                    document.getElementById('profile-role').style.background = "rgba(192, 132, 252, 0.15)";
+                    document.getElementById('popover-id').textContent = `NIP: ${user.userId}`;
+                    document.getElementById('popover-role').textContent = "Dosen";
+                    document.getElementById('popover-role').style.color = "var(--secondary)";
+                    document.getElementById('popover-role').style.background = "rgba(192, 132, 252, 0.15)";
                 } else {
-                    document.getElementById('profile-id').textContent = `NIM: ${user.userId}`;
+                    document.getElementById('popover-id').textContent = `NIM: ${user.userId}`;
                 }
 
-                // --- Logika Sinkronisasi Gambar Avatar (Lokal) ---
+                // --- Logika Sinkronisasi & Hapus Gambar Avatar (Lokal) ---
                 const photoStorageKey = 'profilePic_' + user.userId;
                 const savedPhoto = localStorage.getItem(photoStorageKey);
-                const profileAvatar = document.getElementById('profile-avatar');
+                const headerAvatar = document.getElementById('header-avatar');
+                const popoverAvatar = document.getElementById('popover-avatar');
+                const btnHapusFoto = document.getElementById('btn-hapus-foto');
+                const fileInput = document.getElementById('file-input');
 
+                // Jika ada foto yang tersimpan, tampilkan foto dan munculkan tombol hapus
                 if (savedPhoto) {
-                    profileAvatar.src = savedPhoto;
+                    headerAvatar.src = savedPhoto;
+                    popoverAvatar.src = savedPhoto;
+                    btnHapusFoto.style.display = 'block';
                 }
 
-                // Memproses perubahan berkas foto profil baru
-                const fileInput = document.getElementById('file-input');
+                // Proses Upload Foto Baru
                 fileInput.addEventListener('change', function() {
                     const file = this.files[0];
                     if (file) {
                         const reader = new FileReader();
                         reader.onload = function(e) {
                             const base64Image = e.target.result;
-                            profileAvatar.src = base64Image;
+                            headerAvatar.src = base64Image;
+                            popoverAvatar.src = base64Image;
                             localStorage.setItem(photoStorageKey, base64Image);
+                            
+                            // Munculkan tombol hapus setelah berhasil upload
+                            btnHapusFoto.style.display = 'block';
                         };
                         reader.readAsDataURL(file);
                     }
                 });
 
+                // Proses Hapus Foto
+                btnHapusFoto.addEventListener('click', function() {
+                    if(confirm("Apakah Anda yakin ingin menghapus foto profil?")) {
+                        // 1. Hapus dari penyimpanan browser
+                        localStorage.removeItem(photoStorageKey);
+                        
+                        // 2. Kembalikan gambar ke ikon default netral abu-abu
+                        headerAvatar.src = defaultAvatarUrl;
+                        popoverAvatar.src = defaultAvatarUrl;
+                        
+                        // 3. Sembunyikan tombol hapus karena foto sudah tidak ada
+                        btnHapusFoto.style.display = 'none';
+                        
+                        // 4. Reset input file (agar kita bisa memilih file yang sama lagi jika berubah pikiran)
+                        fileInput.value = "";
+                    }
+                });
+
             } else {
-                window.location.href = "login.html"; 
+                window.location.href = "login.html"; // Jaga halaman dari pembukaan paksa
             }
 
             // ==========================================
-            // 2. FUNGSI UNIFIED LOG OUT (SIDEBAR & KARTU PROFIL)
+            // 2. KONTROL INTERAKSI POP-UP PROFIL
             // ==========================================
-            const logoutCard = document.getElementById('logout-btn');
+            const profileTrigger = document.getElementById('profile-trigger');
+            const profilePopover = document.getElementById('profile-popover');
+
+            profileTrigger.addEventListener('click', function(e) {
+                e.stopPropagation(); 
+                profilePopover.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!profilePopover.contains(e.target) && !profileTrigger.contains(e.target)) {
+                    profilePopover.classList.remove('show');
+                }
+            });
+
+            // ==========================================
+            // 3. FUNGSI UNIFIED LOG OUT (SIDEBAR & POP-UP)
+            // ==========================================
+            const logoutPopover = document.getElementById('logout-btn');
             const logoutSidebar = document.getElementById('logout-sidebar');
 
             function prosesLogout(e) {
                 e.preventDefault();
-                localStorage.removeItem('loggedInUser'); // Hapus session login aktif
+                localStorage.removeItem('loggedInUser'); 
                 alert("Berhasil Log Out!");
                 window.location.href = "index.html"; 
             }
 
-            if (logoutCard) logoutCard.addEventListener('click', prosesLogout);
+            if (logoutPopover) logoutPopover.addEventListener('click', prosesLogout);
             if (logoutSidebar) logoutSidebar.addEventListener('click', prosesLogout);
 
             // ==========================================
-            // 3. KONTROL DROPDOWN SIDEBAR
+            // 4. KONTROL DROPDOWN SIDEBAR
             // ==========================================
             var dropdowns = document.getElementsByClassName("dropdown-btn");
             for (var i = 0; i < dropdowns.length; i++) {
@@ -346,7 +349,7 @@
             }
 
             // ==========================================
-            // 4. PENGATUR MEMORI TEMA (GELAP / TERANG)
+            // 5. PENGATUR MEMORI TEMA (GELAP / TERANG)
             // ==========================================
             const themeToggle = document.getElementById("theme-toggle");
             if (localStorage.getItem("theme") === "light") {

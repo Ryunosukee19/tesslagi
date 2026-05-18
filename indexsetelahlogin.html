@@ -44,7 +44,6 @@
         .dropdown-btn { cursor: pointer; } .arrow { font-size: 0.7rem; transition: transform 0.3s ease; } .dropdown-btn.open .arrow { transform: rotate(180deg); }
         .dropdown-container { display: none; background-color: rgba(0, 0, 0, 0.05); flex-direction: column; } .dropdown-container.show { display: flex; } .dropdown-container li a { padding: 12px 20px 12px 40px; font-size: 0.95rem; border-left: none !important; } .dropdown-container li a:hover { padding-left: 45px; }
         
-        /* Gaya khusus teks log out di sidebar agar terlihat sebagai tombol aksi penting */
         #logout-sidebar { color: #f87171; }
         #logout-sidebar:hover { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; }
 
@@ -57,7 +56,7 @@
             min-height: 100vh; 
             padding: 40px; 
             display: flex;
-            align-items: center; /* Agar posisi hero ke tengah vertikal jika diinginkan */
+            align-items: center;
         }
 
         /* =========================================
@@ -67,9 +66,7 @@
             display: flex; align-items: center; justify-content: space-between; gap: 40px; 
             background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.05), transparent 50%); 
             padding: 50px 40px; border-radius: 20px; border: 1px solid var(--border-color); 
-            width: 100%;
-            position: relative; /* Sangat penting agar pop-up tetap berada di dalam area ini */
-            min-height: 500px;
+            width: 100%; position: relative; min-height: 500px;
         }
 
         .hero-content { flex: 1; max-width: 600px; z-index: 2;}
@@ -85,47 +82,33 @@
            IKON PROFIL DI DALAM HERO (POJOK KANAN ATAS)
         ========================================= */
         .header-profile {
-            position: absolute;
-            top: 30px;
-            right: 30px;
+            position: absolute; top: 30px; right: 30px;
             display: flex; align-items: center; cursor: pointer;
             padding: 4px; border-radius: 50px; transition: all 0.3s ease;
-            background: rgba(255,255,255,0.02);
-            z-index: 10;
+            background: rgba(255,255,255,0.02); z-index: 10;
         }
         .header-profile:hover { background: rgba(56, 189, 248, 0.1); transform: scale(1.05); }
-        .header-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .header-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); background-color: #fff;}
 
         /* =========================================
            POP-UP PROFIL MELAYANG (STYLE GEMINI)
         ========================================= */
         .profile-popover {
-            position: absolute; 
-            top: 90px; /* Muncul tepat di bawah ikon profil */
-            right: 30px;
+            position: absolute; top: 90px; right: 30px;
             width: 320px; background: var(--bg-card);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-color); border-radius: 24px;
             padding: 30px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            
-            /* Animasi Efek Transisi Muncul/Hilang */
             opacity: 0; visibility: hidden; transform: translateY(-15px) scale(0.95);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 2000;
         }
         .profile-popover.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 
-        /* Wadah Foto Profil Besar di Pop-up */
-        .popover-avatar-wrapper {
-            position: relative; width: 100px; height: 100px; margin-bottom: 20px; cursor: pointer;
-        }
-        .popover-avatar {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-            border: 3px solid var(--border-color); transition: all 0.3s ease;
-        }
+        .popover-avatar-wrapper { position: relative; width: 100px; height: 100px; margin-bottom: 10px; cursor: pointer; }
+        .popover-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); transition: all 0.3s ease; background-color: #fff;}
         .popover-avatar-wrapper:hover .popover-avatar { border-color: var(--primary); opacity: 0.8; }
         
-        /* Badge Kamera Kecil */
         .camera-badge {
             position: absolute; bottom: 0; right: 0;
             background: var(--bg-sidebar); border: 1px solid var(--border-color);
@@ -138,17 +121,20 @@
         
         #file-input { display: none; }
 
-        /* Nama, NIM/NIP, dan Role */
+        /* GAYA TOMBOL HAPUS FOTO */
+        .btn-hapus-foto {
+            background: transparent; border: none; color: #ef4444;
+            font-size: 0.8rem; font-weight: 500; cursor: pointer;
+            margin-bottom: 15px; padding: 5px 10px; border-radius: 10px;
+            transition: all 0.3s ease; display: none; /* Sembunyikan di awal */
+        }
+        .btn-hapus-foto:hover { background-color: rgba(239, 68, 68, 0.1); }
+
         .popover-greeting { font-size: 1.25rem; font-weight: 600; color: var(--text-main); margin-bottom: 2px; line-height: 1.3;}
         .popover-email { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;}
         .popover-role { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(56, 189, 248, 0.15); color: var(--primary); font-size: 0.75rem; font-weight: 600; margin-bottom: 25px;}
 
-        /* Tombol di dalam Pop-up */
-        .btn-popover-action {
-            width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color);
-            background: transparent; color: var(--text-main); font-weight: 500; font-size: 0.95rem;
-            cursor: pointer; transition: all 0.3s ease; margin-bottom: 10px;
-        }
+        .btn-popover-action { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; margin-bottom: 10px; }
         .btn-popover-action:hover { background: rgba(255,255,255,0.05); border-color: var(--primary); }
         .btn-logout { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
         .btn-logout:hover { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; }
@@ -171,7 +157,6 @@
 
         <ul class="nav-links">
             <li><a href="#" class="active">Beranda</a></li>
-            
             <li>
                 <a class="dropdown-btn">
                     Materi Semester 1 
@@ -182,31 +167,32 @@
                     <li><a href="materialpro.html">Alpro</a></li>
                 </ul>
             </li>
-
             <li><a href="tugas.html">Tugas</a></li>
             <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="#" id="logout-sidebar">Log out</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
-        
         <section class="hero">
             
             <div class="header-profile" id="profile-trigger" title="Akun Edu-Free Anda">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" id="header-avatar" class="header-avatar" alt="Profil">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="header-avatar" class="header-avatar" alt="Profil">
             </div>
 
             <div class="profile-popover" id="profile-popover">
                 
                 <div class="popover-avatar-wrapper" onclick="triggerUpload()" title="Ubah foto profil">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="popover-avatar" class="popover-avatar" alt="Foto Profil Besar">
                     <div class="camera-badge">📷</div>
                 </div>
                 <input type="file" id="file-input" accept="image/*">
+                
+                <button id="btn-hapus-foto" class="btn-hapus-foto">🗑️ Hapus Foto</button>
 
                 <h3 class="popover-greeting" id="popover-greeting">Halo, Pengguna.</h3>
                 <p class="popover-email" id="popover-id">NIM: 0000000000</p>
-                <span class="popover-role" id="popover-role">Mahasiswa</span>
+                <span class="popover-role" id="popover-role">👨‍🎓 Mahasiswa</span>
                 
                 <button class="btn-popover-action btn-logout" id="logout-btn">Log out</button>
             </div>
@@ -215,13 +201,13 @@
                 <span class="badge-hero">Platform Kursus Online</span>
                 <h1>Tingkatkan Skill Coding Kamu Bersama Kelompok Kami.</h1>
                 <p id="welcome-message">Selamat Datang di halaman kelas.</p>
+                <a href="katalog.html" class="btn-register">Mulai Belajar</a>
             </div>
             <div class="hero-image">
                 <img src="program.jpg" alt="Dashboard Belajar">
             </div>
             
         </section>
-
     </main>
 
     <a href="https://wa.me/082143511969" class="floating-wa" target="_blank" title="Hubungi Kami di WhatsApp">
@@ -235,6 +221,9 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             
+            // FOTO DEFAULT ABU-ABU
+            const defaultAvatarUrl = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
             // 1. MEMBACA SESI DAN PASANG DATA USER SECARA DINAMIS
             const welcomeMessage = document.getElementById('welcome-message');
             const activeUserString = localStorage.getItem('loggedInUser');
@@ -242,10 +231,8 @@
             if (activeUserString) {
                 const user = JSON.parse(activeUserString);
 
-                // --- Pesan Utama Beranda ---
-                welcomeMessage.innerHTML = `Selamat Datang <b>"${user.nama}"</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
-
-                // --- Teks Dalam Pop-up Profil (Full Name & ID di bawahnya) ---
+                // --- Teks Sapaan ---
+                welcomeMessage.innerHTML = `Selamat Datang <b>${user.nama}</b> di halaman kelas semester <b>"${user.semester}"</b>.`;
                 document.getElementById('popover-greeting').textContent = `Halo, ${user.nama}.`;
                 
                 // Set Identitas Berdasarkan Role (Mahasiswa / Dosen)
@@ -258,19 +245,22 @@
                     document.getElementById('popover-id').textContent = `NIM: ${user.userId}`;
                 }
 
-                // --- Logika Sinkronisasi Gambar Avatar (Lokal) ---
+                // --- Logika Sinkronisasi & Hapus Gambar Avatar (Lokal) ---
                 const photoStorageKey = 'profilePic_' + user.userId;
                 const savedPhoto = localStorage.getItem(photoStorageKey);
                 const headerAvatar = document.getElementById('header-avatar');
                 const popoverAvatar = document.getElementById('popover-avatar');
+                const btnHapusFoto = document.getElementById('btn-hapus-foto');
+                const fileInput = document.getElementById('file-input');
 
+                // Jika ada foto yang tersimpan, tampilkan foto dan munculkan tombol hapus
                 if (savedPhoto) {
                     headerAvatar.src = savedPhoto;
                     popoverAvatar.src = savedPhoto;
+                    btnHapusFoto.style.display = 'block';
                 }
 
-                // Memproses perubahan berkas foto profil baru
-                const fileInput = document.getElementById('file-input');
+                // Proses Upload Foto Baru
                 fileInput.addEventListener('change', function() {
                     const file = this.files[0];
                     if (file) {
@@ -280,8 +270,29 @@
                             headerAvatar.src = base64Image;
                             popoverAvatar.src = base64Image;
                             localStorage.setItem(photoStorageKey, base64Image);
+                            
+                            // Munculkan tombol hapus setelah berhasil upload
+                            btnHapusFoto.style.display = 'block';
                         };
                         reader.readAsDataURL(file);
+                    }
+                });
+
+                // Proses Hapus Foto
+                btnHapusFoto.addEventListener('click', function() {
+                    if(confirm("Apakah Anda yakin ingin menghapus foto profil?")) {
+                        // 1. Hapus dari penyimpanan browser
+                        localStorage.removeItem(photoStorageKey);
+                        
+                        // 2. Kembalikan gambar ke ikon default abu-abu
+                        headerAvatar.src = defaultAvatarUrl;
+                        popoverAvatar.src = defaultAvatarUrl;
+                        
+                        // 3. Sembunyikan tombol hapus karena foto sudah tidak ada
+                        btnHapusFoto.style.display = 'none';
+                        
+                        // 4. Reset input file (agar kita bisa memilih file yang sama lagi jika berubah pikiran)
+                        fileInput.value = "";
                     }
                 });
 
@@ -295,13 +306,11 @@
             const profileTrigger = document.getElementById('profile-trigger');
             const profilePopover = document.getElementById('profile-popover');
 
-            // Klik gambar profil pojok atas -> Buka / Tutup kotak pop-up
             profileTrigger.addEventListener('click', function(e) {
                 e.stopPropagation(); 
                 profilePopover.classList.toggle('show');
             });
 
-            // Klik di mana saja di luar kotak -> Tutup otomatis pop-up
             document.addEventListener('click', function(e) {
                 if (!profilePopover.contains(e.target) && !profileTrigger.contains(e.target)) {
                     profilePopover.classList.remove('show');
@@ -316,9 +325,9 @@
 
             function prosesLogout(e) {
                 e.preventDefault();
-                localStorage.removeItem('loggedInUser'); // Hapus session login aktif
+                localStorage.removeItem('loggedInUser'); 
                 alert("Berhasil Log Out!");
-                window.location.href = "index.html"; // Kembalikan ke beranda utama sebelum login
+                window.location.href = "index.html"; 
             }
 
             if (logoutPopover) logoutPopover.addEventListener('click', prosesLogout);
